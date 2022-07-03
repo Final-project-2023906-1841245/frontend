@@ -4,7 +4,7 @@ import './card.css';
 import Button from 'react-bootstrap/Button';
 import {BrowserRouter as Router, Link} from 'react-router-dom';
 
-function Card({ imageSource, title, text, url }) {
+function Card({ imageSource, title, text,url }) {
 
   return (
     <div className="card text-center bg-dark animate__animated animate__fadeInUp">
@@ -18,7 +18,7 @@ function Card({ imageSource, title, text, url }) {
             ? text
             : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam deserunt fuga accusantium excepturi quia, voluptates obcaecati nam in voluptas perferendis velit harum dignissimos quasi ex? Tempore repellat quo doloribus magnam."}
         </p>
-        <Link to= "/user">
+        <Link to= {url}>
           <Button variant="outline-secondary">I need help!</Button>
         </Link>
       </div>
@@ -29,7 +29,7 @@ function Card({ imageSource, title, text, url }) {
 Card.propTypes = {
   title: PropTypes.string.isRequired,
   text: PropTypes.string,
-  url: PropTypes.string,
+  url : PropTypes.string,
   imageSource: PropTypes.string
 };
 
