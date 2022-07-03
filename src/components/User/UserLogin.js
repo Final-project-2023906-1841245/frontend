@@ -10,23 +10,39 @@ export default class UserLogin extends Component{
   constructor(){
     super();
     this.state={
-      answer:'qué pasa chavales'
+      answer:'',
+      email : '',
+      phone : ''
     }
   }
-  
-  
+  handleSubmit = (e) => {
+    e.preventDefault()
+    var email= this.state.email
+    var phone=this.state.phone
+    axios.post('/user', {useremail: email, userphone: phone}).then(response =>{
+      this.setState({
+        answer: response.data
+      })
+    })
+  }
+  emailHandler = (e) => {
+    this.setState({
+      email: e.target.value 
+    })
+  }
+  phoneHandler = (e) => {
+    this.setState({
+      phone: e.target.value 
+    })
+  }
+
   render(){
-    const searchUser = async() =>{
-      const response = await axios.get('/user')
-      console.log(response)
-      this.state.answer = response
-    }
     return(
-      <Form>
+      <Form onSubmit={this.handleSubmit}>
         <h1>{this.state.answer}</h1>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
+          <Form.Control type="email" placeholder="Enter email" onChange = {this.emailHandler}/>
           <Form.Text className="text-muted">
             We'll never share your email with anyone else.
           </Form.Text>
@@ -34,9 +50,9 @@ export default class UserLogin extends Component{
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Phone number</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
+          <Form.Control type="password" placeholder="Password" onChange={this.phoneHandler}/>
         </Form.Group>
-        <Button variant="light" type="submit" onClick={searchUser}>
+        <Button variant="light" type="submit" >
           Submit
         </Button>
         <Link to = "/" style={{textDecoration: 'none'}}>
