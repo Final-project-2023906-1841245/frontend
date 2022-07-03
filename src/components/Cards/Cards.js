@@ -9,14 +9,16 @@ const cards = [
     title: "I need help!",
     text:"Find the right worker to begin working on your project.",
     image: userImage,
-    url: 'https:/localhost:3000/User',
+    type: "/user",
+    message: "Este mk es usuario"
   },
   {
     id: 2,
     title: "Become a Worker",
     text:"Find the perfect work and earn money with your valuable knowledge",
     image: workerImage,
-    url: "https://blog.faztweb.com",
+    type: "/",
+    message: "Este mk es worker"
   }
   ];
 
@@ -24,9 +26,9 @@ function Cards() {
   return (
     <div className="container d-flex justify-content-center align-items-center h-100">
       <div className="row">
-        {cards.map(({ title, image, url, id, text }) => (
+        {cards.map(({ title, image, id, text, type, message}) => (
           <div className="col" key={id}>
-            <Card imageSource={image} title={title} url={url} text={text}/>
+            <Card imageSource={image} title={title}  text={text} type={type} message={message}/>
           </div>
         ))}
       </div>
