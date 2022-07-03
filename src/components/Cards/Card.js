@@ -1,11 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import './card.css';
-import Button from 'react-bootstrap/Button';
-import {BrowserRouter as Router, Link} from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import "./card.css";
+import Button from "react-bootstrap/Button";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
-function Card({ imageSource, title, text, type, message}) {
-
+function Card({ imageSource, title, text, type, message }) {
   return (
     <div className="card text-center bg-dark animate__animated animate__fadeInUp">
       <div className="overflow">
@@ -18,7 +17,7 @@ function Card({ imageSource, title, text, type, message}) {
             ? text
             : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam deserunt fuga accusantium excepturi quia, voluptates obcaecati nam in voluptas perferendis velit harum dignissimos quasi ex? Tempore repellat quo doloribus magnam."}
         </p>
-        <Link to= {type}>
+        <Link to={type}>
           <Button variant="outline-secondary">{message}</Button>
         </Link>
       </div>
@@ -29,7 +28,7 @@ function Card({ imageSource, title, text, type, message}) {
 Card.propTypes = {
   title: PropTypes.string.isRequired,
   text: PropTypes.string,
-  imageSource: PropTypes.string
+  imageSource: PropTypes.string,
 };
 
 export default Card;

@@ -56,9 +56,9 @@ export default class UserLogin extends Component{
           Submit
         </Button>
         <Link to = "/" style={{textDecoration: 'none'}}>
-          <a className="text-white"> Back to home </a>
+          <a className="text-white"> Back to home </a>, 
         </Link>
-        <Link to = "/">
+        <Link to = "/usersignup">
           <a className="text-white"> Sign Up </a>
         </Link>
       </Form>
