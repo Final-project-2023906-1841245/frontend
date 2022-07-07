@@ -10,7 +10,7 @@ export default class UserLogin extends Component{
   constructor(){
     super();
     this.state={
-      answer:'',
+      answer: true,
       email : '',
       phone : ''
     }
@@ -19,30 +19,21 @@ export default class UserLogin extends Component{
     e.preventDefault()
     var email= this.state.email
     var phone=this.state.phone
-    axios.post('/user', {useremail: email, userphone: phone}).then(response =>{
+    axios.post('/userlogin', {useremail: email, userphone: phone}).then(response =>{
       this.setState({
         answer: response.data
       })
     })
   }
-  emailHandler = (e) => {
-    this.setState({
-      email: e.target.value 
-    })
-  }
-  phoneHandler = (e) => {
-    this.setState({
-      phone: e.target.value 
-    })
-  }
-
   render(){
     return(
       <Form onSubmit={this.handleSubmit}>
-        <h1>{this.state.answer}</h1>
+        {!this.state.answer? <div class="alert alert-danger"  role="alert">
+          La información que ingresó es incorrecta
+        </div> : <div></div>}
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" onChange = {this.emailHandler}/>
+          <Form.Control type="email" placeholder="Enter email" onChange = {(e)=>{this.setState({email: e.target.value})}}/>
           <Form.Text className="text-muted">
             We'll never share your email with anyone else.
           </Form.Text>
@@ -50,7 +41,7 @@ export default class UserLogin extends Component{
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Phone number</Form.Label>
-          <Form.Control type="password" placeholder="Password" onChange={this.phoneHandler}/>
+          <Form.Control type="password" placeholder="Password" onChange={(e)=>{this.setState({phone: e.target.value})}}/>
         </Form.Group>
         <Button variant="light" type="submit" >
           Submit
