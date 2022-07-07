@@ -10,9 +10,9 @@ import Cards from './components/Cards/Cards.js' ;
 export default () => (
     <Switch>
         <Route exact path="/" component={Cards} />
-        <Route path="/user" component={UserLogin} />
+        <Route path="/userlogin" component={UserLogin} />
         <Route path="/usersignup" component={UserSignUp} />
-        <Route path="/EmployeeLogin" component={EmployeeLogin} />
-        <Route path="/EmployeeSignUp" component={EmployeeSignUp} />
+        <Route path="/employeelogin" component={EmployeeLogin} />
+        <Route path="/employeesignup" component={EmployeeSignUp} />
     </Switch>
 );
