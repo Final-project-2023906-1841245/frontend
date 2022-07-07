@@ -19,12 +19,9 @@ const cards = [
     text: "Find the perfect work and earn money with your valuable knowledge",
     image: workerImage,
     url: "/employeelogin",
-    
-  }
-  ];
     type: "/employeelogin",
-    message: "Este mk es worker",
-  },
+    message: "Este mk es worker"
+  }
 ];
 
 function Cards() {

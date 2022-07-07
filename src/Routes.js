@@ -14,11 +14,4 @@ export default () => (
         <Route path="/employeelogin" component={EmployeeLogin} />
         <Route path="/employeesignup" component={EmployeeSignUp} />
     </Switch>
-  <Switch>
-    <Route exact path="/" component={Cards} />
-    <Route path="/userlogin" component={UserLogin} />
-    <Route path="/usersignup" component={UserSignUp} />
-    <Route path="/employeelogin" component={EmployeeLogin} />
-    <Route path="/employeesignup" component={EmployeeSignUp} />
-  </Switch>
 );
