@@ -16,10 +16,7 @@ export default class UserSignUp extends Component{
       phone: ''
     }
   }
-
-
-  render(){
-    const handleSubmit = async(e) =>{
+  handleSubmit = (e) =>{
       e.preventDefault();
       var name = this.state.name;
       var email = this.state.email;
@@ -30,8 +27,9 @@ export default class UserSignUp extends Component{
         })
       })
     }
+  render(){
     return(
-      <Form onClick={handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
         {!this.state.answer? <div class="alert alert-danger"  role="alert">
           El usuario que ingresó ya se encuentra registrado
         </div> : <h1>Create Your Account!</h1>}
