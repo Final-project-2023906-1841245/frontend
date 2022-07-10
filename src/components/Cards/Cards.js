@@ -10,7 +10,7 @@ const cards = [
     text: "Find the right worker to begin working on your project.",
     image: userImage,
     type: "/userlogin",
-    message: "Este mk es usuario",
+    message: "Find workers",
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const cards = [
     text: "Find the perfect work and earn money with your valuable knowledge",
     image: workerImage,
     type: "/employeelogin",
-    message: "Este mk es worker",
+    message: "I want to work",
   },
 ];
 
