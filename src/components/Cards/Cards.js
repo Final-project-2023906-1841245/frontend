@@ -11,7 +11,7 @@ const cards = [
     image: userImage,
     url: "/userlogin",
     type: "/userlogin",
-    message: "Este mk es usuario",
+    message: "Find workers",
   },
   {
     id: 2,
@@ -20,8 +20,8 @@ const cards = [
     image: workerImage,
     url: "/employeelogin",
     type: "/employeelogin",
-    message: "Este mk es worker"
-  }
+    message: "I want to work",
+  },
 ];
 
 function Cards() {

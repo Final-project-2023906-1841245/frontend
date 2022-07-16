@@ -13,25 +13,25 @@ export default class UserSignUp extends Component{
       answer: true,
       name: '',
       email: '',
-      phone: ''
+      phone: '',
+      address: ''
     }
   }
-
-
-  render(){
-    const handleSubmit = async(e) =>{
-      e.preventDefault();
-      var name = this.state.name;
-      var email = this.state.email;
-      var phone = this.state.phone;
-      axios.post('/usersignup', {username: name, useremail: email, userphone: phone}).then(response=>{
-        this.setState({
-          answer: response.data
-        })
+  handleSubmit = (e) =>{
+    e.preventDefault();
+    var name = this.state.name;
+    var email = this.state.email;
+    var phone = this.state.phone;
+    var address = this.state.address;
+    axios.post('/usersignup', {username: name, useremail: email, userphone: phone, useraddress: address}).then(response=>{
+      this.setState({
+        answer: response.data
       })
-    }
+    })
+  }
+  render(){
     return(
-      <Form onClick={handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
         {!this.state.answer? <div class="alert alert-danger"  role="alert">
           El usuario que ingresó ya se encuentra registrado
         </div> : <h1>Create Your Account!</h1>}
@@ -42,7 +42,7 @@ export default class UserSignUp extends Component{
 
         <Form.Group className="mb-3" controlId="formBasicAddress">
           <Form.Label>Address</Form.Label>
-          <Form.Control type="Address" placeholder="Enter Address"/>
+          <Form.Control type="Address" placeholder="Enter Address" onChange={(e)=>{this.setState({address: e.target.value})}}/>
           <Form.Text className="text-muted">
             We'll never share your Address with anyone else.
           </Form.Text>
