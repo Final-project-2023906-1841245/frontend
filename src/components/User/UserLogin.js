@@ -19,7 +19,7 @@ export default class UserLogin extends Component{
     e.preventDefault()
     var email= this.state.email
     var phone=this.state.phone
-    axios.post('/userlogin', {useremail: email, userphone: phone}).then(response =>{
+    axios.post('http://localhost:5000/userlogin', {useremail: email, userphone: phone}).then(response =>{
       this.setState({
         answer: response.data
       })
