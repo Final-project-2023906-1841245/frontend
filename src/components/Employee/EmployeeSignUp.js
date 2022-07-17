@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Dropdown from 'react-bootstrap/Dropdown';
+
 import Container from 'react-bootstrap/Container';
 import {BrowserRouter as Router, Link} from 'react-router-dom';
 import axios from 'axios'
@@ -31,7 +33,7 @@ export default class EmployeeSignUp extends Component{
     var work= this.state.work;
     var state = this.state.state;
     var calification = this.state.calification;
-    axios.post('/employeesignup', {employeeid: id, employeename: name, employeeworks: work, employeestate: state, employeecal: calification}).then(response=>{
+    axios.post("http://localhost:5000/employeesignup", {employeeid: id, employeename: name, employeeworks: work, employeestate: state, employeecal: calification}).then(response=>{
       this.setState({
         answer: response.data
       })
@@ -42,13 +44,13 @@ export default class EmployeeSignUp extends Component{
   render(){
    
     return(
-      <Form onClick={this.handleSubmit}>
+       <Form onSubmit={this.handleSubmit}>
         {!this.state.answer? <div class="alert alert-danger"  rowle="alert">
           El empleado que ingresó ya se encuentra registrado
         </div> : <h1>Create Your Account!</h1>}
         <Form.Group className="mb-3" controlId="formBasicID">
             <Form.Label>ID</Form.Label>
-          <Form.Control type="id" placeholder="Enter yout ID" onChange={(e)=>{this.setState({id: e.target.value})}}/>
+          <Form.Control type="id" placeholder="Enter your ID" onChange={(e)=>{this.setState({id: e.target.value})}}/>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicName">
@@ -66,27 +68,21 @@ export default class EmployeeSignUp extends Component{
 
         <Form.Group className="mb-3" controlId="formBasicWork">
           <Form.Label>Work</Form.Label>
-          <ul class="list-group">
-            <li class="list-group-item">
-              <input class="form-check-input me-1" type="checkbox" value="perencejo" aria-label="..." defaultChecked={this.state.isChecked} onClick={this.toggleChange}/>
-              English teacher
-            </li>
-            <li class="list-group-item">
-              <input class="form-check-input me-1" type="checkbox" value="plumber" aria-label="..."/>
-              Plumber
-            </li>
-            <li class="list-group-item">
-              <input class="form-check-input me-1" type="checkbox" value="" aria-label="..."/>
-              Gardener
-            </li>
-            <li class="list-group-item">
-              <input class="form-check-input me-1" type="checkbox" value="" aria-label="..."/>
-              Cleaner
-            </li>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicWork">
+        <Dropdown>
+          <Dropdown.Toggle variant="success" id="dropdown-basic">
+            Dropdown Button
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item href="#/action-1">Cali</Dropdown.Item>
+            <Dropdown.Item href="#/action-2">Bogota</Dropdown.Item>
+            <Dropdown.Item href="#/action-3">La Plata</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
             
-          </ul> 
-          <Form.Label> Add other Work</Form.Label> 
-          <Form.Control type="other work" placeholder="Enter work"/>        
         </Form.Group>
 
         
@@ -95,7 +91,7 @@ export default class EmployeeSignUp extends Component{
           Submit
         </Button>
         <Link to = "/employeelogin" style={{textDecoration: 'none'}}>
-          <a className="text-white"> If you have an Account  </a>,
+          <a className="text-white"> I already have an account </a>,
         </Link>
         <Link to = "/">
           <a className="text-white"> Back home </a>

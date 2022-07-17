@@ -93,7 +93,7 @@ export default class UserSignUp extends Component {
           Submit
         </Button>
         <Link to = "/userlogin" style={{textDecoration: 'none'}}>
-          <a className="text-white"> If you have an Account  </a>,
+          <a className="text-white"> I already have an account </a>,
         </Link>
         <Link to="/">
           <a className="text-white"> Back home </a>
