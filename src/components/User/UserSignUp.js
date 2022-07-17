@@ -13,8 +13,8 @@ export default class UserSignUp extends Component{
       answer: true,
       name: '',
       email: '',
-      phone: '',
-      address: ''
+      address: '',
+      phone: ''
     }
   }
   handleSubmit = (e) =>{
@@ -23,10 +23,12 @@ export default class UserSignUp extends Component{
     var email = this.state.email;
     var phone = this.state.phone;
     var address = this.state.address;
-    axios.post('/usersignup', {username: name, useremail: email, userphone: phone, useraddress: address}).then(response=>{
+    axios.post('http://localhost:5000/usersignup', {username: name, useraddress: address,  useremail: email, userphone: phone}).then(response=>{
       this.setState({
         answer: response.data
+        
       })
+      
     })
   }
   render(){
