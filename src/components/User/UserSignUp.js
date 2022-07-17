@@ -1,15 +1,14 @@
-import React, {Component} from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import {BrowserRouter as Router, Link} from 'react-router-dom';
-import axios from 'axios'
+import React, { Component } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import { BrowserRouter as Router, Link } from "react-router-dom";
+import axios from "axios";
 
-export default class UserSignUp extends Component{
-
-  constructor(){
+export default class UserSignUp extends Component {
+  constructor() {
     super();
-    this.state={
+    this.state = {
       answer: true,
       name: '',
       email: '',
@@ -17,7 +16,7 @@ export default class UserSignUp extends Component{
       phone: ''
     }
   }
-  handleSubmit = (e) =>{
+  handleSubmit = (e) => {
     e.preventDefault();
     var name = this.state.name;
     var email = this.state.email;
@@ -34,17 +33,33 @@ export default class UserSignUp extends Component{
   render(){
     return(
       <Form onSubmit={this.handleSubmit}>
-        {!this.state.answer? <div class="alert alert-danger"  role="alert">
-          El usuario que ingresó ya se encuentra registrado
-        </div> : <h1>Create Your Account!</h1>}
+        {!this.state.answer ? (
+          <div class="alert alert-danger" role="alert">
+            El usuario que ingresó ya se encuentra registrado
+          </div>
+        ) : (
+          <h1>Create Your Account!</h1>
+        )}
         <Form.Group className="mb-3" controlId="formBasicName">
           <Form.Label>Name</Form.Label>
-          <Form.Control type="name" placeholder="Enter your Name" onChange={(e)=>{this.setState({name: e.target.value})}}/>
+          <Form.Control
+            type="name"
+            placeholder="Enter your Name"
+            onChange={(e) => {
+              this.setState({ name: e.target.value });
+            }}
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicAddress">
           <Form.Label>Address</Form.Label>
-          <Form.Control type="Address" placeholder="Enter Address" onChange={(e)=>{this.setState({address: e.target.value})}}/>
+          <Form.Control
+            type="Address"
+            placeholder="Enter Address"
+            onChange={(e) => {
+              this.setState({ address: e.target.value });
+            }}
+          />
           <Form.Text className="text-muted">
             We'll never share your Address with anyone else.
           </Form.Text>
@@ -52,7 +67,13 @@ export default class UserSignUp extends Component{
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" onChange={(e)=>{this.setState({email: e.target.value})}}/>
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            onChange={(e) => {
+              this.setState({ email: e.target.value });
+            }}
+          />
           <Form.Text className="text-muted">
             We'll never share your email with anyone else.
           </Form.Text>
@@ -60,7 +81,13 @@ export default class UserSignUp extends Component{
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Phone number</Form.Label>
-          <Form.Control type="password" placeholder="Password" onChange={(e)=>{this.setState({phone: e.target.value})}}/>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            onChange={(e) => {
+              this.setState({ phone: e.target.value });
+            }}
+          />
         </Form.Group>
         <Button variant="light" type="submit">
           Submit
@@ -68,7 +95,7 @@ export default class UserSignUp extends Component{
         <Link to = "/userlogin" style={{textDecoration: 'none'}}>
           <a className="text-white"> If you have an Account  </a>,
         </Link>
-        <Link to = "/">
+        <Link to="/">
           <a className="text-white"> Back home </a>
         </Link>
       </Form>
