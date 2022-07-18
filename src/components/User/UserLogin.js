@@ -32,61 +32,64 @@ export default class UserLogin extends Component {
   };
   render() {
     return (
-      
-      <Form onSubmit={this.handleSubmit} >
-        {!this.state.answer ? (
-          <div class="alert alert-danger" role="alert">
-            La información que ingresó es incorrecta
+      <div className='auth-wrapper'>
+      <div className='auth-inner'>
+        <Form onSubmit={this.handleSubmit} >
+          {!this.state.answer ? (
+            <div class="alert alert-danger" role="alert">
+              La información que ingresó es incorrecta
+            </div>
+          ) : (
+            <div></div>
+          )}
+          <h1>Login</h1>
+
+          <div className="mb-3">
+            <Form.Label>Email address</Form.Label>
+            
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              onChange={(e) => {
+                this.setState({ email: e.target.value });
+              }}
+            />
+            
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+
           </div>
-        ) : (
-          <div></div>
-        )}
-         <h1>Login</h1>
-
-        <div className="mb-3">
-          <Form.Label>Email address</Form.Label>
           
-          <Form.Control
-            type="email"
-            placeholder="Enter email"
-            onChange={(e) => {
-              this.setState({ email: e.target.value });
-            }}
-          />
+
+          <div className="mb-3">
+            <Form.Label>Phone number</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              onChange={(e) => {
+                this.setState({ phone: e.target.value });
+              }}
+            />
+          </div>
+
+          <div className="d-grid">
+            <button variant="light" type="submit"  className="btn btn-primary">
+            Login
+            </button>
+          </div>
           
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-
-        </div>
+          <p className="forgot-password text-right">
+           <a href="/usersignup"> Create your Account</a>
+          </p>
+          <p className="forgot-password text-right">
+            <a href="/"> Back to home</a>
+          </p>
+          
         
-
-        <div className="mb-3">
-          <Form.Label>Phone number</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Password"
-            onChange={(e) => {
-              this.setState({ phone: e.target.value });
-            }}
-          />
-        </div>
-
-        <div className="d-grid">
-          <button variant="light" type="submit"  className="btn btn-primary">
-          Login
-          </button>
-        </div>
-        
-        <p className="forgot-password text-right">
-           Create your <a href="/usersignup">Account</a>
-        </p>
-        <p className="forgot-password text-right">
-           Back to <a href="/">home</a>
-        </p>
-        
-      
-      </Form>
+        </Form>
+      </div>
+      </div>
     );
   }
 }
