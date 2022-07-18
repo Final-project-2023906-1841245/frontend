@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
+import "./Userlogin.css";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import axios from "axios";
 
@@ -31,7 +32,8 @@ export default class UserLogin extends Component {
   };
   render() {
     return (
-      <Form onSubmit={this.handleSubmit}>
+      
+      <Form onSubmit={this.handleSubmit} >
         {!this.state.answer ? (
           <div class="alert alert-danger" role="alert">
             La información que ingresó es incorrecta
@@ -39,8 +41,11 @@ export default class UserLogin extends Component {
         ) : (
           <div></div>
         )}
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+         <h1>Login</h1>
+
+        <div className="mb-3">
           <Form.Label>Email address</Form.Label>
+          
           <Form.Control
             type="email"
             placeholder="Enter email"
@@ -48,12 +53,15 @@ export default class UserLogin extends Component {
               this.setState({ email: e.target.value });
             }}
           />
+          
           <Form.Text className="text-muted">
             We'll never share your email with anyone else.
           </Form.Text>
-        </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+        </div>
+        
+
+        <div className="mb-3">
           <Form.Label>Phone number</Form.Label>
           <Form.Control
             type="password"
@@ -62,16 +70,22 @@ export default class UserLogin extends Component {
               this.setState({ phone: e.target.value });
             }}
           />
-        </Form.Group>
-        <Button variant="light" type="submit">
-          Submit
-        </Button>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <a className="text-white"> Back to home </a>,
-        </Link>
-        <Link to="/usersignup">
-          <a className="text-white"> Sign Up </a>
-        </Link>
+        </div>
+
+        <div className="d-grid">
+          <button variant="light" type="submit"  className="btn btn-primary">
+          Login
+          </button>
+        </div>
+        
+        <p className="forgot-password text-right">
+           Create your <a href="/usersignup">Account</a>
+        </p>
+        <p className="forgot-password text-right">
+           Back to <a href="/">home</a>
+        </p>
+        
+      
       </Form>
     );
   }

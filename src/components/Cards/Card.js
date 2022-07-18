@@ -18,7 +18,7 @@ function Card({ imageSource, title, text, type, message }) {
             : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam deserunt fuga accusantium excepturi quia, voluptates obcaecati nam in voluptas perferendis velit harum dignissimos quasi ex? Tempore repellat quo doloribus magnam."}
         </p>
         <Link to={type}>
-          <Button variant="outline-secondary">{message}</Button>
+        <Button variant="outline-primary">{message}</Button>{' '}
         </Link>
       </div>
     </div>

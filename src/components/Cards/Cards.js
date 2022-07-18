@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "./Card";
-import userImage from "../../assets/userImage.png";
-import workerImage from "../../assets/workerImage.jpg";
+import userImage from "../../assets/user2.jpg";
+import workerImage from "../../assets/employee2.jpg";
 
 const cards = [
   {
