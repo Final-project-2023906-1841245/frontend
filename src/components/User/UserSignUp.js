@@ -32,13 +32,21 @@ export default class UserSignUp extends Component {
   }
   render(){
     return(
+      <div className='auth-wrapper'>
+      <div className='auth-inner'>
       <Form onSubmit={this.handleSubmit}>
         {!this.state.answer ? (
           <div class="alert alert-danger" role="alert">
             El usuario que ingresó ya se encuentra registrado
           </div>
         ) : (
-          <h1>Create Your Account!</h1>
+          <h1 style={{
+            fontSize: 30,
+            fontWeight: 800,
+            color: "#124265",
+            textAlign: "center",
+            fontFamily: "sans-serif"
+          }} >Create Your Account</h1>
         )}
         <Form.Group className="mb-3" controlId="formBasicName">
           <Form.Label>Name</Form.Label>
@@ -89,16 +97,21 @@ export default class UserSignUp extends Component {
             }}
           />
         </Form.Group>
-        <Button variant="light" type="submit">
-          Submit
-        </Button>
-        <Link to = "/userlogin" style={{textDecoration: 'none'}}>
-          <a className="text-white"> I already have an account </a>,
-        </Link>
-        <Link to="/">
-          <a className="text-white"> Back home </a>
-        </Link>
+
+        <div className="d-grid">
+        <button variant="light" type="submit"  className="btn btn-primary">
+          SignUp
+        </button>
+        </div>
+        <p className="forgot-password text-right">
+           <a href="/userlogin"> I Already have an Account</a>
+        </p>
+        <p className="text-right" >
+           <a href="/"> Back to home</a>
+        </p>
       </Form>
+      </div>
+      </div>
     );
   }
 }

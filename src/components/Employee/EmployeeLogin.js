@@ -22,26 +22,40 @@ export default class EmployeeLogin extends Component{
       this.state.answer = response
     }
     return(
-      <Form>
-        <h1>{this.state.answer}</h1>
-        <Form.Group className="mb-3" controlId="formBasicId">
-          <Form.Label>ID</Form.Label>
-          <Form.Control type="Id" placeholder="Enter Id" />
-          <Form.Text className="text-muted">
-            We'll never share your id with anyone else.
-          </Form.Text>
-        </Form.Group>
+      <div className='auth-wrapper'>
+      <div className='auth-inner'>
+        <Form>
+          <h1 style={{
+              fontSize: 35,
+              fontWeight: 800,
+              color: "#124265",
+              textAlign: "center",
+              fontFamily: "sans-serif"
+            }}>{this.state.answer}</h1>
+          <Form.Group className="mb-3" controlId="formBasicId">
+            <Form.Label>ID</Form.Label>
+            <Form.Control type="Id" placeholder="Enter Id" />
+            <Form.Text className="text-muted">
+              We'll never share your id with anyone else.
+            </Form.Text>
+          </Form.Group>
 
-        <Button variant="light" type="submit" onClick={searchUser}>
-          Submit
-        </Button>
-        <Link to = "/" style={{textDecoration: 'none'}}>
-          <a className="text-white"> Back to home </a>, 
-        </Link>
-        <Link to = "/employeesignup">
-          <a className="text-white"> Sign Up </a>
-        </Link>
-      </Form>
+          <div className="d-grid">
+            <button variant="light" type="submit"  className="btn btn-primary">
+            Login
+            </button>
+          </div>
+        
+          <p className="forgot-password text-right">
+           <a href="/employeesignup"> Create your Account</a>
+          </p>
+          <p className="forgot-password text-right">
+            <a href="/"> Back to home</a>
+          </p>
+
+        </Form>
+      </div>
+      </div>
     );
   }
 }

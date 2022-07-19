@@ -16,7 +16,7 @@ const cards = [
   {
     id: 2,
     title: "Become a Worker",
-    text: "Find the perfect work and earn money with your valuable knowledge",
+    text: "Find the perfect work and earn money with your knowledge.",
     image: workerImage,
     url: "/employeelogin",
     type: "/employeelogin",

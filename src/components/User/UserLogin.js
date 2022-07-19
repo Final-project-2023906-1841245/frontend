@@ -37,12 +37,18 @@ export default class UserLogin extends Component {
         <Form onSubmit={this.handleSubmit} >
           {!this.state.answer ? (
             <div class="alert alert-danger" role="alert">
-              La información que ingresó es incorrecta
+              Incorrect username or number entered. 
             </div>
           ) : (
             <div></div>
           )}
-          <h1>Login</h1>
+          <h1 style={{
+            fontSize: 35,
+            fontWeight: 800,
+            color: "#124265",
+            textAlign: "center",
+            fontFamily: "sans-serif"
+          }}>   Login   </h1>
 
           <div className="mb-3">
             <Form.Label>Email address</Form.Label>
