@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import "./Userlogin.css";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import axios from "axios";
+import logo from '../../assets/logo.png';
 
 export default class UserLogin extends Component {
   constructor() {
@@ -35,6 +35,12 @@ export default class UserLogin extends Component {
       <div className='auth-wrapper'>
       <div className='auth-inner'>
         <Form onSubmit={this.handleSubmit} >
+          <div className="overflow">
+                <img src={logo} alt="logo" />
+                <Form.Label style={{fontSize: 20}}>Mande</Form.Label>
+
+          </div>
+          
           {!this.state.answer ? (
             <div class="alert alert-danger" role="alert">
               Incorrect username or number entered. 

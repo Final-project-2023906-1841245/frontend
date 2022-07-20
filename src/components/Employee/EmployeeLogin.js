@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
 import {BrowserRouter as Router, Link} from 'react-router-dom';
+import logo from '../../assets/logo.png';
 import axios from 'axios'
 
 export default class EmployeeLogin extends Component{
@@ -10,31 +9,60 @@ export default class EmployeeLogin extends Component{
   constructor(){
     super();
     this.state={
-      answer:'Login'
-    }
+      answer:true,
+      id:"",
+    };
   }
+  handleSubmit = (e) => {
+    e.preventDefault();
+    var id = this.state.id;
+    
+    axios
+      .post("http://localhost:5000/employeelogin", {
+        employeeid: id,
+        
+      })
+      .then((response) => {
+        this.setState({
+          answer: response.data,
+        });
+      });
+  };
   
   
   render(){
-    const searchUser = async() =>{
-      const response = await axios.get('/employeelogin')
-      console.log(response)
-      this.state.answer = response
-    }
+    
     return(
       <div className='auth-wrapper'>
       <div className='auth-inner'>
-        <Form>
+        <Form onSubmit={this.handleSubmit}>
+          <div className="overflow">
+                <img src={logo} alt="logo" />
+                <Form.Label style={{fontSize: 20}}>Mande</Form.Label>
+          </div>
+          {!this.state.answer ? (
+            <div class="alert alert-danger" role="alert">
+              Incorrect username or number entered. 
+            </div>
+          ) : (
+            <div></div>
+          )}
           <h1 style={{
               fontSize: 35,
               fontWeight: 800,
               color: "#124265",
               textAlign: "center",
               fontFamily: "sans-serif"
-            }}>{this.state.answer}</h1>
+            }}>Login</h1>
           <Form.Group className="mb-3" controlId="formBasicId">
             <Form.Label>ID</Form.Label>
-            <Form.Control type="Id" placeholder="Enter Id" />
+            <Form.Control 
+              type="Id" 
+              placeholder="Enter Id" 
+              onChange={(e) => {
+                this.setState({ id: e.target.value });
+              }}
+              />
             <Form.Text className="text-muted">
               We'll never share your id with anyone else.
             </Form.Text>

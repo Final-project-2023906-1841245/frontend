@@ -1,56 +1,60 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
-
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import axios from "axios";
+import logo from '../../assets/logo.png';
 
 export default class EmployeeSignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
       answer: true,
-      id: "",
-      name: "",
-      works: [],
-      calification: "",
-      isChecked: false,
+      id: '',
+      name: '',
+      address:'',
+      email:'',
+      isChecked: false
+
     };
   }
 
-  componentDidMount = () => {
-    axios.get("http://localhost:5000/employeesignup").then((response) => {
-      this.setState({ works: response.data });
-      console.log(this.state.works);
-    });
-  };
+  // componentDidMount = () => {
+  //   axios.get("http://localhost:5000/employeesignup").then((response) => {
+  //     this.setState({ works: response.data });
+  //     console.log(this.state.works);
+  //   });
+  // };
 
   toggleChange = () => {
     this.setState({
       isChecked: !this.state.isChecked,
     });
   };
-  handleSubmit = async (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
     var id = this.state.id;
     var name = this.state.name;
-    var work = this.state.work;
-    var state = this.state.state;
-    var calification = this.state.calification;
+    var isChecked = this.state.isChecked;
+    var address = this.state.address;
+    var email = this.state.email;
+    
+    
     axios
       .post("http://localhost:5000/employeesignup", {
         employeeid: id,
         employeename: name,
-        employeeworks: work,
-        employeestate: state,
-        employeecal: calification,
+        employeeaddress: address,
+        employeeemail: email
+       
+        
       })
-      .then((response) => {
+      .then(response => {
         this.setState({
           answer: response.data,
         });
       });
+      
+      // this.props.history.push({to: '/employeeworks'});
   };
 
   render() {
@@ -58,21 +62,29 @@ export default class EmployeeSignUp extends Component {
       <div className="auth-wrapper">
         <div className="auth-inner">
           <Form onSubmit={this.handleSubmit}>
+              
+          <div className="overflow">
+                <img src={logo} alt="logo" />
+                <Form.Label style={{fontSize: 20}}>Mande</Form.Label>
+
+          </div>
+
             {!this.state.answer ? (
               <div class="alert alert-danger" rowle="alert">
                 El empleado que ingresó ya se encuentra registrado
               </div>
             ) : (
+              
               <h1
                 style={{
-                  fontSize: 35,
+                  fontSize: 30,
                   fontWeight: 800,
                   color: "#124265",
                   textAlign: "center",
                   fontFamily: "sans-serif",
                 }}
               >
-                Create Your Account!
+                Create Your Account
               </h1>
             )}
 
@@ -100,23 +112,29 @@ export default class EmployeeSignUp extends Component {
 
             <Form.Group className="mb-3" controlId="formBasicAddress">
               <Form.Label>Address</Form.Label>
-              <Form.Control type="Address" placeholder="Enter Address" />
+              <Form.Control 
+                type="Address" 
+                placeholder="Enter Address"  
+                onChange={(e) => {
+                  this.setState({ address: e.target.value });
+                }}/>
               <Form.Text className="text-muted">
                 We'll never share your Address with anyone else.
               </Form.Text>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicWork">
-              <Form.Label>Work</Form.Label>
-              <Form.Select aria-label="Default select example">
-                {this.state.works.map((element) => {
-                  return (
-                    <option key={element.work_name} value={element.work_name}>
-                      {element.work_name}
-                    </option>
-                  );
-                })}
-              </Form.Select>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                onChange={(e) => {
+                  this.setState({ email: e.target.value });
+                }}
+              />
+              <Form.Text className="text-muted">
+                We'll never share your email with anyone else.
+              </Form.Text>
             </Form.Group>
 
             <div className="d-grid">
@@ -126,7 +144,7 @@ export default class EmployeeSignUp extends Component {
             </div>
 
             <p className="forgot-password text-right">
-              <a href="/employeelogin"> Create your Account</a>
+              <a href="/employeelogin"> I Already have an Account</a>
             </p>
             <p className="forgot-password text-right">
               <a href="/"> Back to home</a>
