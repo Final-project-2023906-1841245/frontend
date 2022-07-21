@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
-import "./Userlogin.css";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import axios from "axios";
 import logo from '../../assets/logo.png';
@@ -49,7 +48,7 @@ export default class UserLogin extends Component {
             <div></div>
           )}
           <h1 style={{
-            fontSize: 35,
+            fontSize: 30,
             fontWeight: 800,
             color: "#124265",
             textAlign: "center",

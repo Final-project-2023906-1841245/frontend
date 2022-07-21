@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import { BrowserRouter as Router, Link } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
 import axios from "axios";
 import logo from '../../assets/logo.png';
 
@@ -51,10 +52,10 @@ export default class EmployeeSignUp extends Component {
       .then(response => {
         this.setState({
           answer: response.data,
-        });
+        })        
       });
       
-      // this.props.history.push({to: '/employeeworks'});
+      this.props.history.push("/employeeworks");
   };
 
   render() {
@@ -138,9 +139,11 @@ export default class EmployeeSignUp extends Component {
             </Form.Group>
 
             <div className="d-grid">
-              <button variant="light" type="submit" className="btn btn-primary">
+              
+              <Button  variant="primary" type="submit" className="btn btn-primary">
                 SignUp
-              </button>
+              </Button>
+              
             </div>
 
             <p className="forgot-password text-right">

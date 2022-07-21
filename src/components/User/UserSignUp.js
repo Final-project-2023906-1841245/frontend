@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import axios from "axios";
 import logo from '../../assets/logo.png';
+import { NavLink } from 'react-router-dom';
 
 export default class UserSignUp extends Component {
   constructor() {
@@ -24,6 +25,7 @@ export default class UserSignUp extends Component {
     axios.post('http://localhost:5000/usersignup', {username: name, useraddress: address,  useremail: email, userphone: phone}).then(response=>{
       this.setState({
         answer: response.data
+
         
       })
       
@@ -112,9 +114,9 @@ export default class UserSignUp extends Component {
         <p className="forgot-password text-right">
            <a href="/userlogin"> I Already have an Account</a>
         </p>
-        <p className="text-right" >
-           <a href="/"> Back to home</a>
-        </p>
+        <NavLink to="/" className="link" activeClassName="active">
+          Back home
+        </NavLink>
       </Form>
       </div>
       </div>
