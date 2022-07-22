@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import axios from "axios";
-import logo from '../../assets/logo.png';
+import logo from '../../assets/logo1.png';
 import { NavLink } from 'react-router-dom';
 
 export default class UserSignUp extends Component {
@@ -39,7 +39,7 @@ export default class UserSignUp extends Component {
 
           <div className="overflow">
                 <img src={logo} alt="logo" />
-                <Form.Label style={{fontSize: 20}}>Mande</Form.Label>
+               
 
           </div>
           
@@ -64,6 +64,7 @@ export default class UserSignUp extends Component {
             onChange={(e) => {
               this.setState({ name: e.target.value });
             }}
+            required
           />
         </Form.Group>
 
@@ -75,6 +76,7 @@ export default class UserSignUp extends Component {
             onChange={(e) => {
               this.setState({ address: e.target.value });
             }}
+            required
           />
           <Form.Text className="text-muted">
             We'll never share your Address with anyone else.
@@ -89,6 +91,7 @@ export default class UserSignUp extends Component {
             onChange={(e) => {
               this.setState({ email: e.target.value });
             }}
+            required
           />
           <Form.Text className="text-muted">
             We'll never share your email with anyone else.
@@ -103,6 +106,7 @@ export default class UserSignUp extends Component {
             onChange={(e) => {
               this.setState({ phone: e.target.value });
             }}
+            required
           />
         </Form.Group>
 

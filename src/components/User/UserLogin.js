@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import axios from "axios";
-import logo from '../../assets/logo.png';
+import logo from '../../assets/logo1.png';
 
 export default class UserLogin extends Component {
   constructor() {
@@ -27,6 +27,7 @@ export default class UserLogin extends Component {
         this.setState({
           answer: response.data,
         });
+        console.log(response.data)
       });
   };
   render() {
@@ -36,8 +37,7 @@ export default class UserLogin extends Component {
         <Form onSubmit={this.handleSubmit} >
           <div className="overflow">
                 <img src={logo} alt="logo" />
-                <Form.Label style={{fontSize: 20}}>Mande</Form.Label>
-
+               
           </div>
           
           {!this.state.answer ? (
@@ -64,6 +64,7 @@ export default class UserLogin extends Component {
               onChange={(e) => {
                 this.setState({ email: e.target.value });
               }}
+              required
             />
             
             <Form.Text className="text-muted">

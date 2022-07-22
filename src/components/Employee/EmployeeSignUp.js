@@ -3,28 +3,22 @@ import Form from "react-bootstrap/Form";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import axios from "axios";
-import logo from '../../assets/logo.png';
+import logo from '../../assets/logo1.png';
 
 export default class EmployeeSignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      answer: true,
+      logged: false,
       id: '',
       name: '',
       address:'',
       email:'',
-      isChecked: false
-
+      isChecked: false,
+      submit: false
     };
   }
 
-  // componentDidMount = () => {
-  //   axios.get("http://localhost:5000/employeesignup").then((response) => {
-  //     this.setState({ works: response.data });
-  //     console.log(this.state.works);
-  //   });
-  // };
 
   toggleChange = () => {
     this.setState({
@@ -38,8 +32,7 @@ export default class EmployeeSignUp extends Component {
     var isChecked = this.state.isChecked;
     var address = this.state.address;
     var email = this.state.email;
-    
-    
+        
     axios
       .post("http://localhost:5000/employeesignup", {
         employeeid: id,
@@ -51,11 +44,14 @@ export default class EmployeeSignUp extends Component {
       })
       .then(response => {
         this.setState({
-          answer: response.data,
+          logged: response.data,
+          submit: true
         })        
+        
       });
       
-      this.props.history.push("/employeeworks");
+       
+      
   };
 
   render() {
@@ -64,17 +60,21 @@ export default class EmployeeSignUp extends Component {
         <div className="auth-inner">
           <Form onSubmit={this.handleSubmit}>
               
-          <div className="overflow">
-                <img src={logo} alt="logo" />
-                <Form.Label style={{fontSize: 20}}>Mande</Form.Label>
+          <div className="overflow" >
+                <img  src={logo} alt="logo" />
+               
 
           </div>
 
-            {!this.state.answer ? (
-              <div class="alert alert-danger" rowle="alert">
+            {!this.state.logged && this.state.submit? (
+              <div class="alert alert-danger" rowle="alert">  
                 El empleado que ingresó ya se encuentra registrado
               </div>
             ) : (
+              this.state.logged? (this.props.history.push("/employeeworks")):
+              <div></div>
+            )
+            }
               
               <h1
                 style={{
@@ -87,7 +87,7 @@ export default class EmployeeSignUp extends Component {
               >
                 Create Your Account
               </h1>
-            )}
+           
 
             <Form.Group className="mb-3" controlId="formBasicID">
               <Form.Label>ID</Form.Label>
@@ -97,6 +97,8 @@ export default class EmployeeSignUp extends Component {
                 onChange={(e) => {
                   this.setState({ id: e.target.value });
                 }}
+                required
+                
               />
             </Form.Group>
 
@@ -108,6 +110,7 @@ export default class EmployeeSignUp extends Component {
                 onChange={(e) => {
                   this.setState({ name: e.target.value });
                 }}
+                required
               />
             </Form.Group>
 
@@ -118,7 +121,9 @@ export default class EmployeeSignUp extends Component {
                 placeholder="Enter Address"  
                 onChange={(e) => {
                   this.setState({ address: e.target.value });
-                }}/>
+                }}
+                required
+                />
               <Form.Text className="text-muted">
                 We'll never share your Address with anyone else.
               </Form.Text>
@@ -132,6 +137,7 @@ export default class EmployeeSignUp extends Component {
                 onChange={(e) => {
                   this.setState({ email: e.target.value });
                 }}
+                required
               />
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.

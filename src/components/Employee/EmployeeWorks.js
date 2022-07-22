@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import axios from "axios";
-import logo from '../../assets/logo.png';
+import logo from '../../assets/logo1.png';
+import Button from 'react-bootstrap/Button';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 export default class employeeWorks extends Component {
   constructor(props) {
@@ -10,6 +12,7 @@ export default class employeeWorks extends Component {
     this.state = {
       answer: true,
       works: [],
+     
      
     };
   }
@@ -24,17 +27,18 @@ export default class employeeWorks extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
   
-    var work = this.state.work;
+    var works = this.state.works;
    
     axios
       .post("http://localhost:5000/employeeWorks", {
         
-        employeeworks: work,
+        employeeworks: works,
         
       })
       .then((response) => {
         this.setState({
           answer: response.data,
+          
         });
       });
   };
@@ -47,7 +51,7 @@ export default class employeeWorks extends Component {
               
           <div className="overflow">
                 <img src={logo} alt="logo" />
-                <Form.Label style={{fontSize: 20}}>Mande</Form.Label>
+                
 
           </div>
               
@@ -74,22 +78,33 @@ export default class employeeWorks extends Component {
                   );
                 })}
               </Form.Select>
+              </Form.Group>
 
+              
+              <Form.Label>price</Form.Label>
+             
+              <InputGroup className="mb-3">
               <Form.Control
                 type="price_work"
                 placeholder="Enter price for hour"
                 onChange={(e) => {
                   this.setState({  });
                 }}
+                required
               />
+               <Button variant="primary" type="submit">
+                Add work
+              </Button>
             
-            </Form.Group>
+              </InputGroup>
 
+            <Form.Group>
             <div className="d-grid">
               <button variant="light" type="submit" className="btn btn-primary">
                 SignUp
               </button>
             </div>
+            </Form.Group>
 
           </Form>
         </div>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Form from 'react-bootstrap/Form';
 import {BrowserRouter as Router, Link} from 'react-router-dom';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/logo1.png';
 import axios from 'axios'
 
 export default class EmployeeLogin extends Component{
@@ -38,7 +38,7 @@ export default class EmployeeLogin extends Component{
         <Form onSubmit={this.handleSubmit}>
           <div className="overflow">
                 <img src={logo} alt="logo" />
-                <Form.Label style={{fontSize: 20}}>Mande</Form.Label>
+                
           </div>
           {!this.state.answer ? (
             <div class="alert alert-danger" role="alert">
@@ -54,15 +54,18 @@ export default class EmployeeLogin extends Component{
               textAlign: "center",
               fontFamily: "sans-serif"
             }}>Login</h1>
+
+
           <Form.Group className="mb-3" controlId="formBasicId">
-            <Form.Label>ID</Form.Label>
+            <Form.Label>ID Number</Form.Label>
             <Form.Control 
               type="Id" 
               placeholder="Enter Id" 
               onChange={(e) => {
                 this.setState({ id: e.target.value });
               }}
-              />
+              required
+            />
             <Form.Text className="text-muted">
               We'll never share your id with anyone else.
             </Form.Text>
