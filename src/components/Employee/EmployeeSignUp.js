@@ -90,7 +90,7 @@ export default class EmployeeSignUp extends Component {
            
 
             <Form.Group className="mb-3" controlId="formBasicID">
-              <Form.Label>ID</Form.Label>
+              <Form.Label>ID Number</Form.Label>
               <Form.Control
                 type="id"
                 placeholder="Enter your ID"

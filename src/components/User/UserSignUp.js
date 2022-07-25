@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 import axios from "axios";
 import logo from '../../assets/logo1.png';
 import { NavLink } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 export default class UserSignUp extends Component {
   constructor() {
@@ -111,10 +112,14 @@ export default class UserSignUp extends Component {
         </Form.Group>
 
         <div className="d-grid">
-        <button variant="light" type="submit"  className="btn btn-primary">
-          SignUp
-        </button>
+              
+           <Button  variant="primary" type="submit" className="btn btn-primary">
+              SignUp
+          </Button>
+              
         </div>
+
+
         <p className="forgot-password text-right">
            <a href="/userlogin"> I Already have an Account</a>
         </p>

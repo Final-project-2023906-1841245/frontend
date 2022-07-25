@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import {BrowserRouter as Router, Link} from 'react-router-dom';
 import logo from '../../assets/logo1.png';
 import axios from 'axios'
+import Button from 'react-bootstrap/Button';
 
 export default class EmployeeLogin extends Component{
 
@@ -72,16 +73,18 @@ export default class EmployeeLogin extends Component{
           </Form.Group>
 
           <div className="d-grid">
-            <button variant="light" type="submit"  className="btn btn-primary">
-            Login
-            </button>
+              
+            <Button  variant="primary" type="submit" className="btn btn-primary">
+                Login
+            </Button>
+              
           </div>
         
           <p className="forgot-password text-right">
            <a href="/employeesignup"> Create your Account</a>
           </p>
           <p className="forgot-password text-right">
-            <a href="/"> Back to home</a>
+            <a href="/pro"> Back to home</a>
           </p>
 
         </Form>

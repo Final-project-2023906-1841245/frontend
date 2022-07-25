@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Form from "react-bootstrap/Form";
-import Container from "react-bootstrap/Container";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import axios from "axios";
 import logo from '../../assets/logo1.png';
+import Button from 'react-bootstrap/Button';
 
 export default class UserLogin extends Component {
   constructor() {
@@ -86,9 +86,11 @@ export default class UserLogin extends Component {
           </div>
 
           <div className="d-grid">
-            <button variant="light" type="submit"  className="btn btn-primary">
-            Login
-            </button>
+              
+            <Button  variant="primary" type="submit" className="btn btn-primary">
+                Login
+            </Button>
+              
           </div>
           
           <p className="forgot-password text-right">

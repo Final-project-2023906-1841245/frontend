@@ -100,9 +100,11 @@ export default class employeeWorks extends Component {
 
             <Form.Group>
             <div className="d-grid">
-              <button variant="light" type="submit" className="btn btn-primary">
-                SignUp
-              </button>
+              
+              <Button  variant="primary" type="submit" className="btn btn-primary">
+                Continue
+              </Button>
+              
             </div>
             </Form.Group>
 
