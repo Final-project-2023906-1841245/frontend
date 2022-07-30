@@ -7,6 +7,7 @@ import EmployeeSignUp from "./components/Employee/EmployeeSignUp";
 import Cards from "./components/Cards/Cards.js";
 import EmployeeWorks from "./components/Employee/EmployeeWorks.js";
 import pro from "./proof/pro.js";
+import PrincipalPage from "./components/PrincipalPage.js";
 
 export default () => (
     <Switch>
@@ -17,5 +18,6 @@ export default () => (
         <Route path="/employeesignup" component={EmployeeSignUp} />
         <Route path="/employeeworks" component={EmployeeWorks} />
         <Route path="/pro" component={pro} />
+        <Route path="/principalpage" component={PrincipalPage} />
     </Switch>
 );
