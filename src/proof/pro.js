@@ -10,6 +10,7 @@ import Button from 'react-bootstrap/Button';
 import logo from '../assets/logo1.png';
 
 
+
 export default class EmployeeProfile extends Component{
 
   
@@ -24,31 +25,39 @@ export default class EmployeeProfile extends Component{
        
         
 
-            <div class="row">
-                <div class="col- col-md-2">
+            <div class="row" >
+
+                <div class="col 2">
                     <img  src={logo} alt="logo" />
                 </div>
-                <div class="col-6 col-md-10">
-                <Navbar className= "justify-content-end flex-grow-1 pe-3"  bg="primary">
 
-                
-                    <Nav className="mr-auto">
-                        <Nav.Link >Home</Nav.Link>
-                        <Nav.Link >About</Nav.Link>
-                    </Nav>
-                    
-                    <Form className="d-flex" >
-                        <Form.Control
-                            type="search"
-                            placeholder="Search"
-                            className="me-2"
-                            aria-label="Search"
-                        />
-                        <Button  variant="secondary" type="submit" className="btn btn-primary">Search</Button>
-                    </Form>
-                    
-                </Navbar>
-             </div>
+                <div class="col-10" >
+
+                <Nav >
+                     <Nav.Item>
+                        <Form className="d-flex" >
+                            <Form.Control
+                                type="search"
+                                placeholder="Search"
+                                className="me-2"
+                                aria-label="Search"
+                            />
+                            <Button  variant="primary" type="submit" className="btn btn-primary">Search</Button>
+                        </Form>
+                    </Nav.Item>
+
+                    <Nav.Item>
+                        <Nav.Link href="/">Activity</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link eventKey="link-1">Logout</Nav.Link>
+                    </Nav.Item>
+                   
+                </Nav>
+
+                </div>
+               
+               
             </div>
 
             <div class="row">

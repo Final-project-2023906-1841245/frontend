@@ -32,6 +32,10 @@ export default class EmployeeSignUp extends Component {
     var isChecked = this.state.isChecked;
     var address = this.state.address;
     var email = this.state.email;
+
+    var recipe = JSON.stringify(this.state);
+
+    localStorage.setItem(this.state.name, recipe);
         
     axios
       .post("http://localhost:5000/employeesignup", {
@@ -45,14 +49,21 @@ export default class EmployeeSignUp extends Component {
       .then(response => {
         this.setState({
           logged: response.data,
+          
           submit: true
-        })        
+            
+        }) 
+              
         
       });
-      
-       
+     
+     
       
   };
+
+  
+
+ 
 
   render() {
     return (

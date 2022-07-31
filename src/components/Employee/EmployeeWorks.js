@@ -12,6 +12,8 @@ export default class employeeWorks extends Component {
     this.state = {
       answer: true,
       works: [],
+      ref: React.createRef(),
+      price :'',
      
      
     };
@@ -20,14 +22,18 @@ export default class employeeWorks extends Component {
   componentDidMount = () => {
     axios.get("http://localhost:5000/employeeWorks").then((response) => {
       this.setState({ works: response.data });
-      console.log(this.state.works);
+      // console.log(this.state.works);
     });
   };
 
   handleSubmit = async (e) => {
     e.preventDefault();
-  
+    var ref= this.state.ref;
     var works = this.state.works;
+    var price = this.state.price;
+
+    console.log(ref);
+    console.log(price);
    
     axios
       .post("http://localhost:5000/employeeWorks", {
@@ -69,7 +75,11 @@ export default class employeeWorks extends Component {
 
             <Form.Group className="mb-3" controlId="formBasicWork">
               <Form.Label>Work</Form.Label>
-              <Form.Select aria-label="Default select example">
+              <Form.Select aria-label="Default select example"   
+                onChange={(e) => {
+                  this.setState({ ref: e.target.value });
+                }}>
+
                 {this.state.works.map((element) => {
                   return (
                     <option key={element.work_name} value={element.work_name}>
@@ -88,13 +98,17 @@ export default class employeeWorks extends Component {
                 type="price_work"
                 placeholder="Enter price for hour"
                 onChange={(e) => {
-                  this.setState({  });
+                  this.setState({ price: e.target.value  });
                 }}
                 required
               />
-               <Button variant="primary" type="submit">
+               <Button variant="primary" type="submit" 
+                  onSubmit = { console.log(this.ref)  }
+               >
                 Add work
               </Button>
+
+              
             
               </InputGroup>
 

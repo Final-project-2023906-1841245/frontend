@@ -4,10 +4,14 @@
 .btn-search{
     align-items: center;
 }
-
+/* .firstrow{
+    border:3px solid brown;
+   border-radius:22px;
+}  */
 .profile-img{
     text-align: center;
 }
+
 .profile-img img{
     width: 70%;
     height: 100%;
