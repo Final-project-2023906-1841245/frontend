@@ -15,14 +15,13 @@ export default class employeeWorks extends Component {
       ref: React.createRef(),
       price: "",
       selectedworks: [],
-      temporalwork: "",
+      temporalwork: null,
     };
   }
 
   componentDidMount = () => {
     axios.get("http://localhost:5000/employeeWorks").then((response) => {
       this.setState({ works: response.data });
-      // console.log(this.state.works);
     });
   };
 
@@ -31,10 +30,6 @@ export default class employeeWorks extends Component {
     var ref = this.state.ref;
     var works = this.state.works;
     var price = this.state.price;
-
-    console.log(ref);
-    console.log(price);
-    console.log(this.state.selectedworks);
 
     axios
       .post("http://localhost:5000/employeeWorks", {
@@ -72,8 +67,10 @@ export default class employeeWorks extends Component {
               <Form.Label>Work</Form.Label>
               <Form.Select
                 aria-label="Default select example"
-                onClick={(e) => {
-                  this.setState({ temporalwork: e.target.value });
+                onChange={(e) => {
+                  this.setState({ temporalwork: e.target.value }, () => {
+                    console.log(this.state.temporalwork);
+                  });
                 }}
               >
                 {this.state.works.map((element) => {
@@ -100,23 +97,29 @@ export default class employeeWorks extends Component {
               <Button
                 variant="primary"
                 type="submit"
-                onClick={() => {
-                  this.setState((prevState) => ({
-                    selectedworks: [
-                      prevState.selectedworks,
-                      this.state.temporalwork,
-                    ],
-                  }));
-                  console.log(this.state.temporalwork);
+                onClick={(e) => {
+                  this.state.selectedworks.push(this.state.temporalwork);
+                  this.forceUpdate();
+                  console.log(
+                    "Esto es lo que se va a renderizar: ",
+                    this.state.temporalwork
+                  );
+                  // this.setState((prevState) => ({
+                  //   selectedworks: [
+                  //     prevState.selectedworks,
+                  //     this.state.temporalwork,
+                  //   ],
+                  // }));
+                  // console.log(this.state.temporalwork);
                 }}
               >
                 Add work
               </Button>
             </InputGroup>
             <div className="tags-input-container">
-              {this.state.selectedworks.map((work) => {
+              {this.state.selectedworks.map((work, index) => {
                 return (
-                  <div className="tag-item">
+                  <div className="tag-item" key={index}>
                     <span className="text">{work}</span>
                     <span className="close">&times;</span>
                   </div>

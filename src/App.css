@@ -57,21 +57,22 @@ h4 {
 }
 
 .tags-input-container {
-  border: 2px solid #000;
+  border: 2px solid blue;
   padding: 0.5em;
-  border-radius: 3px;
-  width: min(80vw, 600px);
+  border-radius: 12px;
+  width: min(80vw, 340px);
   margin-top: 1em;
+  margin-bottom: 1em;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.5em;
+  gap: 0.2em;
 }
 
 .tag-item {
-  background-color: rgb(218, 216, 216);
+  background-color: rgb(176, 205, 235);
   display: inline-block;
-  padding: 0.5em 0.75em;
+  padding: 0.01em 0.5em;
   border-radius: 20px;
 }
 .tag-item .close {
