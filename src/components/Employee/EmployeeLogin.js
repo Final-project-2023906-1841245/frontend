@@ -16,15 +16,11 @@ export default class EmployeeLogin extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     var id = this.state.id;
-<<<<<<< HEAD
     localStorage.clear();
 
     // var recipe = JSON.stringify(this.state);
     // localStorage.setItem(this.state.name, recipe);
     
-=======
-
->>>>>>> c9363b94a3e384f3430e007543aad93bb94c0b98
     axios
       .post("http://localhost:5000/employeelogin", {
         employeeid: id,
@@ -35,38 +31,7 @@ export default class EmployeeLogin extends Component {
         });
       });
   };
-<<<<<<< HEAD
-  
-  
-  render(){
-    
-    return(
-      <div className='auth-wrapper'>
-      <div className='auth-inner'>
-        <Form onSubmit={this.handleSubmit}>
-          <div className="overflow">
-                <img src={logo} alt="logo" />
-                
-          </div>
-          {!this.state.answer ? (
-            <div class="alert alert-danger" role="alert">
-              Incorrect username or number entered. 
-            </div>
-          ) : (
-            <div></div>
-          
-            
-          )}
-          <h1 style={{
-              fontSize: 35,
-              fontWeight: 800,
-              color: "#124265",
-              textAlign: "center",
-              fontFamily: "sans-serif"
-            }}>Login</h1>
 
-=======
->>>>>>> c9363b94a3e384f3430e007543aad93bb94c0b98
 
   render() {
     return (
@@ -117,7 +82,6 @@ export default class EmployeeLogin extends Component {
                 className="btn btn-primary"
               >
                 Login
-<<<<<<< HEAD
             </Button>
               
           </div>
@@ -128,17 +92,7 @@ export default class EmployeeLogin extends Component {
           <p className="forgot-password text-right">
             <a href="/employeeprincipalpage"> Back to home</a>
           </p>
-=======
-              </Button>
-            </div>
->>>>>>> c9363b94a3e384f3430e007543aad93bb94c0b98
 
-            <p className="forgot-password text-right">
-              <a href="/employeesignup"> Create your Account</a>
-            </p>
-            <p className="forgot-password text-right">
-              <a href="/pro"> Back to home</a>
-            </p>
           </Form>
         </div>
       </div>

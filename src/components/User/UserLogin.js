@@ -94,7 +94,6 @@ export default class UserLogin extends Component {
                 className="btn btn-primary"
               >
                 Login
-<<<<<<< HEAD
             </Button>
               
           </div>
@@ -109,19 +108,6 @@ export default class UserLogin extends Component {
         
         </Form>
       </div>
-=======
-              </Button>
-            </div>
-
-            <p className="forgot-password text-right">
-              <a href="/usersignup"> Create your Account</a>
-            </p>
-            <p className="forgot-password text-right">
-              <a href="/"> Back to home</a>
-            </p>
-          </Form>
-        </div>
->>>>>>> c9363b94a3e384f3430e007543aad93bb94c0b98
       </div>
     );
   }
