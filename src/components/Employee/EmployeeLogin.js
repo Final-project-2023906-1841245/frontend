@@ -18,6 +18,10 @@ export default class EmployeeLogin extends Component{
   handleSubmit = (e) => {
     e.preventDefault();
     var id = this.state.id;
+    localStorage.clear();
+
+    // var recipe = JSON.stringify(this.state);
+    // localStorage.setItem(this.state.name, recipe);
     
     axios
       .post("http://localhost:5000/employeelogin", {
@@ -48,6 +52,8 @@ export default class EmployeeLogin extends Component{
             </div>
           ) : (
             <div></div>
+          
+            
           )}
           <h1 style={{
               fontSize: 35,
@@ -85,7 +91,7 @@ export default class EmployeeLogin extends Component{
            <a href="/employeesignup"> Create your Account</a>
           </p>
           <p className="forgot-password text-right">
-            <a href="/pro"> Back to home</a>
+            <a href="/employeeprincipalpage"> Back to home</a>
           </p>
 
         </Form>

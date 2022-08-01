@@ -97,7 +97,7 @@ export default class UserLogin extends Component {
            <a href="/usersignup"> Create your Account</a>
           </p>
           <p className="forgot-password text-right">
-            <a href="/"> Back to home</a>
+            <a href="/userprincipalpage"> Back to home</a>
           </p>
           
         
