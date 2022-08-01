@@ -12,10 +12,10 @@ export default class employeeWorks extends Component {
     this.state = {
       answer: true,
       works: [],
-      ref: React.createRef(),
-      price: "",
+      prices: [],
       selectedworks: [],
       temporalwork: null,
+      temporalprice: "",
     };
   }
 
@@ -27,13 +27,12 @@ export default class employeeWorks extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    var ref = this.state.ref;
-    var works = this.state.works;
-    var price = this.state.price;
-
+    var empworks = this.state.selectedworks;
+    var empprices = this.state.prices;
     axios
       .post("http://localhost:5000/employeeWorks", {
-        employeeworks: works,
+        employeeworks: empworks,
+        employeeprices: empprices,
       })
       .then((response) => {
         this.setState({
@@ -48,7 +47,7 @@ export default class employeeWorks extends Component {
         <div className="auth-inner">
           <Form onSubmit={this.handleSubmit}>
             <div className="overflow">
-              <img src={logo} alt="logo" />
+              <img src={logo} className="logo" alt="logo" />
             </div>
 
             <h1
@@ -68,9 +67,7 @@ export default class employeeWorks extends Component {
               <Form.Select
                 aria-label="Default select example"
                 onChange={(e) => {
-                  this.setState({ temporalwork: e.target.value }, () => {
-                    console.log(this.state.temporalwork);
-                  });
+                  this.setState({ temporalwork: e.target.value });
                 }}
               >
                 {this.state.works.map((element) => {
@@ -83,14 +80,14 @@ export default class employeeWorks extends Component {
               </Form.Select>
             </Form.Group>
 
-            <Form.Label>price</Form.Label>
+            <Form.Label>Price</Form.Label>
 
             <InputGroup className="mb-3">
               <Form.Control
                 type="price_work"
                 placeholder="Enter price for hour"
                 onChange={(e) => {
-                  this.setState({ price: e.target.value });
+                  this.setState({ temporalprice: e.target.value });
                 }}
                 required
               />
@@ -99,18 +96,8 @@ export default class employeeWorks extends Component {
                 type="submit"
                 onClick={(e) => {
                   this.state.selectedworks.push(this.state.temporalwork);
+                  this.state.prices.push(this.state.temporalprice);
                   this.forceUpdate();
-                  console.log(
-                    "Esto es lo que se va a renderizar: ",
-                    this.state.temporalwork
-                  );
-                  // this.setState((prevState) => ({
-                  //   selectedworks: [
-                  //     prevState.selectedworks,
-                  //     this.state.temporalwork,
-                  //   ],
-                  // }));
-                  // console.log(this.state.temporalwork);
                 }}
               >
                 Add work

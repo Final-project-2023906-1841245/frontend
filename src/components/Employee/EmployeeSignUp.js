@@ -1,24 +1,23 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import { BrowserRouter as Router, Link } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 import axios from "axios";
-import logo from '../../assets/logo1.png';
+import logo from "../../assets/logo1.png";
 
 export default class EmployeeSignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
       logged: false,
-      id: '',
-      name: '',
-      address:'',
-      email:'',
+      id: "",
+      name: "",
+      address: "",
+      email: "",
       isChecked: false,
-      submit: false
+      submit: false,
     };
   }
-
 
   toggleChange = () => {
     this.setState({
@@ -36,69 +35,53 @@ export default class EmployeeSignUp extends Component {
     var recipe = JSON.stringify(this.state);
 
     localStorage.setItem(this.state.name, recipe);
-        
+
     axios
       .post("http://localhost:5000/employeesignup", {
         employeeid: id,
         employeename: name,
         employeeaddress: address,
-        employeeemail: email
-       
-        
+        employeeemail: email,
       })
-      .then(response => {
+      .then((response) => {
         this.setState({
           logged: response.data,
-          
-          submit: true
-            
-        }) 
-              
-        
+
+          submit: true,
+        });
       });
-     
-     
-      
   };
-
-  
-
- 
 
   render() {
     return (
       <div className="auth-wrapper">
         <div className="auth-inner">
           <Form onSubmit={this.handleSubmit}>
-              
-          <div className="overflow" >
-                <img  src={logo} alt="logo" />
-               
+            <div className="overflow">
+              <img src={logo} className="logo" alt="logo" />
+            </div>
 
-          </div>
-
-            {!this.state.logged && this.state.submit? (
-              <div class="alert alert-danger" rowle="alert">  
+            {!this.state.logged && this.state.submit ? (
+              <div class="alert alert-danger" rowle="alert">
                 El empleado que ingresó ya se encuentra registrado
               </div>
+            ) : this.state.logged ? (
+              this.props.history.push("/employeeworks")
             ) : (
-              this.state.logged? (this.props.history.push("/employeeworks")):
               <div></div>
-            )
-            }
-              
-              <h1
-                style={{
-                  fontSize: 30,
-                  fontWeight: 800,
-                  color: "#124265",
-                  textAlign: "center",
-                  fontFamily: "sans-serif",
-                }}
-              >
-                Create Your Account
-              </h1>
-           
+            )}
+
+            <h1
+              style={{
+                fontSize: 30,
+                fontWeight: 800,
+                color: "#124265",
+                textAlign: "center",
+                fontFamily: "sans-serif",
+              }}
+            >
+              Create Your Account
+            </h1>
 
             <Form.Group className="mb-3" controlId="formBasicID">
               <Form.Label>ID Number</Form.Label>
@@ -109,7 +92,6 @@ export default class EmployeeSignUp extends Component {
                   this.setState({ id: e.target.value });
                 }}
                 required
-                
               />
             </Form.Group>
 
@@ -127,14 +109,14 @@ export default class EmployeeSignUp extends Component {
 
             <Form.Group className="mb-3" controlId="formBasicAddress">
               <Form.Label>Address</Form.Label>
-              <Form.Control 
-                type="Address" 
-                placeholder="Enter Address"  
+              <Form.Control
+                type="Address"
+                placeholder="Enter Address"
                 onChange={(e) => {
                   this.setState({ address: e.target.value });
                 }}
                 required
-                />
+              />
               <Form.Text className="text-muted">
                 We'll never share your Address with anyone else.
               </Form.Text>
@@ -156,11 +138,13 @@ export default class EmployeeSignUp extends Component {
             </Form.Group>
 
             <div className="d-grid">
-              
-              <Button  variant="primary" type="submit" className="btn btn-primary">
+              <Button
+                variant="primary"
+                type="submit"
+                className="btn btn-primary"
+              >
                 SignUp
               </Button>
-              
             </div>
 
             <p className="forgot-password text-right">
