@@ -2,11 +2,11 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import UserLogin from "./components/User/UserLogin.js";
 import UserSignUp from "./components/User/UserSignUp.js";
-import EmployeeLogin from "./components/Employee/EmployeeLogin";
-import EmployeeSignUp from "./components/Employee/EmployeeSignUp";
+import EmployeeLogin from "./components/Employee/EmployeeLogin.js";
+import EmployeeSignUp from "./components/Employee/EmployeeSignUp.js";
 import Cards from "./components/Cards/Cards.js";
 import EmployeeWorks from "./components/Employee/EmployeeWorks.js";
-import UserPrincipalPage from "./components/User/UserPrincipalPage";
+import UserPrincipalPage from "./components/User/UserPrincipalPage.js";
 import EmployeePrincipalPage from "./components/Employee/EmployeePrincipalPage.js";
 
 

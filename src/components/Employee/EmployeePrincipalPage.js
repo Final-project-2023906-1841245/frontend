@@ -4,7 +4,6 @@ import {BrowserRouter as Router, Link} from 'react-router-dom';
 import "./StylePrincipal.css";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-import Button from 'react-bootstrap/Button';
 import logo from '../../assets/logo1.png';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -20,12 +19,13 @@ export default class EmployeePrincipalPage extends Component{
     
     return(
         
-        <Container fluid  className="perencejo" style={{paddingTop: 10 }}>
+        <div className="auth-wrapper-ja">
+        <div className="auth-inner-ja"> 
         <Form method="post">
 
 
             <Row>
-                <Col xs={12} sm={4} md={4}>
+                <Col md={{ span: 2, offset: 1 }}>
                     <img  src={logo} alt="logo" />
                 </Col>
 
@@ -140,7 +140,8 @@ export default class EmployeePrincipalPage extends Component{
             
             
         </Form>           
-    </Container>
+    </div>
+    </div>
     );
   }
 }

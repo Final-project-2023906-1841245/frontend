@@ -20,12 +20,13 @@ export default class UserPrincipalPage extends Component{
     
     return(
         
-        <Container fluid  className="perencejo" style={{paddingTop: 10 }}>
+        <div className="auth-wrapper-ja">
+        <div className="auth-inner-ja">
         <Form method="post">
 
 
             <Row>
-                <Col xs={12} sm={4} md={4}>
+                <Col  md={{ span: 2, offset: 1 }}>
                     <img  src={logo} alt="logo" />
                 </Col>
 
@@ -92,20 +93,10 @@ export default class UserPrincipalPage extends Component{
 
             
             <Row>
-                <Col  md={4}>
-                    <div class="profile-work">
-                        
-                        <p>SKILLS</p>
-                        <a href="">Web Designer</a><br/>
-                        <a href="">Web Developer</a><br/>
-                        <a href="">WordPress</a><br/>
-                        <a href="">WooCommerce</a><br/>
-                        <a href="">PHP, .Net</a><br/>
-                    </div>
-                </Col>
+                
 
 
-                <Col  md={4}>
+                <Col   md={{ span: 4, offset: 4 }}>
               
                     <div class="row">
                         <div class="col-md-6">
@@ -150,7 +141,8 @@ export default class UserPrincipalPage extends Component{
             
             
         </Form>           
-    </Container>
+        </div>
+        </div>
     );
   }
 }
