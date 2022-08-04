@@ -32,9 +32,9 @@ export default class EmployeeSignUp extends Component {
     var address = this.state.address;
     var email = this.state.email;
 
-    var recipe = JSON.stringify(this.state);
+    var dataEmployee = JSON.stringify(this.state);
 
-    localStorage.setItem(this.state.name, recipe);
+    localStorage.setItem(this.state.name, dataEmployee);
 
     axios
       .post("http://localhost:5000/employeesignup", {

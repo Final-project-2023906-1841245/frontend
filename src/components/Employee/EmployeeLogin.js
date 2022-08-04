@@ -9,8 +9,9 @@ export default class EmployeeLogin extends Component {
   constructor() {
     super();
     this.state = {
-      answer: true,
+      answer: false,
       id: "",
+      submit: false,
     };
   }
   handleSubmit = (e) => {
@@ -28,6 +29,8 @@ export default class EmployeeLogin extends Component {
       .then((response) => {
         this.setState({
           answer: response.data,
+
+          submit: true,
         });
       });
   };
@@ -41,13 +44,19 @@ export default class EmployeeLogin extends Component {
             <div className="overflow">
               <img src={logo} className="logo" alt="logo" />
             </div>
-            {!this.state.answer ? (
+
+
+            {!this.state.answer && this.state.submit ?  (
               <div class="alert alert-danger" role="alert">
                 Incorrect username or number entered.
               </div>
+            ) :  this.state.answer ? (
+              this.props.history.push("/employeeprincipalpage")
             ) : (
               <div></div>
             )}
+
+
             <h1
               style={{
                 fontSize: 35,
