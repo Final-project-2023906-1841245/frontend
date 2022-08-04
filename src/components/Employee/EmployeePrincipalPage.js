@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Form from 'react-bootstrap/Form';
 import {BrowserRouter as Router, Link} from 'react-router-dom';
 import "./StylePrincipal.css";
-import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import logo from '../../assets/logo1.png';
 import Col from 'react-bootstrap/Col';

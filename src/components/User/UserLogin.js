@@ -9,9 +9,10 @@ export default class UserLogin extends Component {
   constructor() {
     super();
     this.state = {
-      answer: true,
+      answer: false,
       email: "",
       phone: "",
+      submit: false,
     };
   }
   handleSubmit = (e) => {
@@ -26,6 +27,7 @@ export default class UserLogin extends Component {
       .then((response) => {
         this.setState({
           answer: response.data,
+          submit: true,
         });
         console.log(response.data);
       });
@@ -39,10 +41,12 @@ export default class UserLogin extends Component {
               <img src={logo} className="logo" alt="logo" />
             </div>
 
-            {!this.state.answer ? (
+            {!this.state.answer  && this.state.submit ? (
               <div class="alert alert-danger" role="alert">
                 Incorrect username or number entered.
               </div>
+            ) :  this.state.answer ? (
+              this.props.history.push("/userprincipalpage")
             ) : (
               <div></div>
             )}
@@ -102,7 +106,7 @@ export default class UserLogin extends Component {
            <a href="/usersignup"> Create your Account</a>
           </p>
           <p className="forgot-password text-right">
-            <a href="/userprincipalpage"> Back to home</a>
+            <a href="/"> Back to home</a>
           </p>
           
         

@@ -99,7 +99,7 @@ export default class EmployeeLogin extends Component {
            <a href="/employeesignup"> Create your Account</a>
           </p>
           <p className="forgot-password text-right">
-            <a href="/employeeprincipalpage"> Back to home</a>
+            <a href="/"> Back to home</a>
           </p>
 
           </Form>
