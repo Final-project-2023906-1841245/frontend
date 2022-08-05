@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
-import { BrowserRouter as Router, Link } from "react-router-dom";
 import axios from "axios";
 import logo from "../../assets/logo1.png";
 import Button from "react-bootstrap/Button";

@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import Form from 'react-bootstrap/Form';
-import {BrowserRouter as Router, Link} from 'react-router-dom';
 import "./PrincipalPageStyle.css";
-import Container from 'react-bootstrap/Container';
+import axios from "axios";
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 import logo from '../../assets/logo1.png';
@@ -13,9 +12,23 @@ import Row from 'react-bootstrap/Row';
 
 export default class UserPrincipalPage extends Component{
 
-  
-  
-  
+    constructor() {
+        super();
+        this.state = {
+          name: "",
+          email: "",
+          address: "",
+          phone: "",
+        };
+      }
+
+    componentDidMount = () => {  
+        var phone_data = localStorage.getItem("phone");
+        axios.post("http://localhost:5000/userprincipalpage", {"phone": phone_data}).then((response) => {
+            console.log(response.data)
+        });
+    };
+
   render(){
     
     return(
@@ -103,7 +116,7 @@ export default class UserPrincipalPage extends Component{
                             <Form.Label className='data'>User ID</Form.Label>
                         </div>
                         <div class="col-md-6">
-                            <Form.Label >User Id</Form.Label>
+                            <Form.Label >{localStorage.getItem("phone")}</Form.Label>
                         </div>
                     </div>
                     <div class="row">

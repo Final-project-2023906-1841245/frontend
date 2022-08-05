@@ -11,14 +11,19 @@ export default class UserLogin extends Component {
     this.state = {
       answer: false,
       email: "",
-      phone: "",
+      phone: 0,
       submit: false,
     };
   }
+
   handleSubmit = (e) => {
     e.preventDefault();
     var email = this.state.email;
     var phone = this.state.phone;
+
+    var dataEmployee = this.state.phone;
+    localStorage.setItem("phone", dataEmployee);
+
     axios
       .post("http://localhost:5000/userlogin", {
         useremail: email,
