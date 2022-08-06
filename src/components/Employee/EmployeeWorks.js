@@ -21,7 +21,9 @@ export default class employeeWorks extends Component {
 
   componentDidMount = () => {
     axios.get("http://localhost:5000/employeeWorks").then((response) => {
-      this.setState({ works: response.data });
+      var res = response.data;
+      res.unshift({ work_name: " " });
+      this.setState({ works: res });
     });
   };
 
@@ -29,8 +31,10 @@ export default class employeeWorks extends Component {
     e.preventDefault();
     var empworks = this.state.selectedworks;
     var empprices = this.state.prices;
+    var id = localStorage.getItem("id");
     axios
       .post("http://localhost:5000/employeeWorks", {
+        employeeid: id,
         employeeworks: empworks,
         employeeprices: empprices,
       })
