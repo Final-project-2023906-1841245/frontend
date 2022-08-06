@@ -10,7 +10,7 @@ export default class EmployeeSignUp extends Component {
     super(props);
     this.state = {
       logged: false,
-      id: "",
+      id: 0,
       name: "",
       address: "",
       email: "",
@@ -25,7 +25,7 @@ export default class EmployeeSignUp extends Component {
     var address = this.state.address;
     var email = this.state.email;
 
-    var dataEmployee = JSON.stringify(this.state.id);
+    var dataEmployee = this.state.id;
     localStorage.setItem("id", dataEmployee);
 
     axios

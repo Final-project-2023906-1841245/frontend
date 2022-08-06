@@ -9,7 +9,6 @@ export default class employeeWorks extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      answer: true,
       works: [],
       prices: [],
       selectedworks: [],
@@ -38,10 +37,9 @@ export default class employeeWorks extends Component {
         employeeprices: empprices,
       })
       .then((response) => {
-        this.setState({
-          answer: response.data,
-        });
+        console.log("He entrado Frontend");
       });
+    this.props.history.push("/employeeprincipalpage");
   };
 
   render() {
@@ -96,7 +94,6 @@ export default class employeeWorks extends Component {
               />
               <Button
                 variant="primary"
-                type="submit"
                 onClick={(e) => {
                   this.state.selectedworks.push(this.state.temporalwork);
                   this.state.prices.push(this.state.temporalprice);
