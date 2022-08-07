@@ -13,8 +13,26 @@ export default class EmployeePrincipalPage extends Component {
     this.state = {
       name: "",
       email: "",
+      works:[],
+      file: '',
+      imagePreviewUrl:'https://upload.wikimedia.org/wikipedia/commons/d/d3/Microsoft_Account.svg',
+          
     };
   }
+
+  photoUpload = e =>{
+    e.preventDefault();
+    const reader = new FileReader();
+    const file = e.target.files[0];
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        imagePreviewUrl: reader.result
+      });
+    }
+    reader.readAsDataURL(file);
+ 
+  };
   componentDidMount = () => {
     var id_data = localStorage.getItem("id");
     axios
@@ -25,10 +43,14 @@ export default class EmployeePrincipalPage extends Component {
         this.setState({
           name: response.data[0].employee_name,
           email: response.data[0].email,
+          
         });
+       
       });
   };
   render() {
+    const {imagePreviewUrl, 
+    } = this.state;
     return (
       <div className="auth-wrapper-ja">
         <div className="auth-inner-ja">
@@ -52,13 +74,16 @@ export default class EmployeePrincipalPage extends Component {
 
             <Row>
               <Col>
-                <div class="profile-img">
-                  <img src="../../assets/ja.jpg" alt="" />
-                  <div class="file btn btn-lg btn-primary">
-                    Change Photo
-                    <input type="file" name="file" />
-                  </div>
-                </div>
+                    <Form.Label htmlFor="photo-upload" className="custom-file-upload fas">
+                        <div className="img-wrap" >
+                            <img class="photo-upload" src={imagePreviewUrl}/>
+                         </div>
+                         <div class="file btn btn-lg btn-primary">
+                                Change Photo
+                                <input id="photo-upload" type="file" onChange={this.photoUpload} />
+                        </div>
+
+                    </Form.Label>
               </Col>
 
               <Col>
