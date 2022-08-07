@@ -15,7 +15,7 @@ export default class EmployeePrincipalPage extends Component {
       email: "",
       works:[],
       file: '',
-      imagePreviewUrl:'https://upload.wikimedia.org/wikipedia/commons/d/d3/Microsoft_Account.svg',
+      imagePreviewUrl:'https://c.neh.tw/thumb/f/720/comvecteezy377227.jpg',
           
     };
   }
@@ -41,12 +41,17 @@ export default class EmployeePrincipalPage extends Component {
       })
       .then((response) => {
         this.setState({
-          name: response.data[0].employee_name,
-          email: response.data[0].email,
-          
+          name: response.data[0][0].employee_name,
+          email: response.data[0][0].email,
+          works: response.data[1]
         });
+        console.log(this.state.works);
+
+        
+
        
       });
+
   };
   render() {
     const {imagePreviewUrl, 
@@ -56,7 +61,7 @@ export default class EmployeePrincipalPage extends Component {
         <div className="auth-inner-ja">
           <Form method="post">
             <Row>
-              <Col md={{ span: 2, offset: 1 }}>
+              <Col md={{ span: 2, offset: 0 }}>
                 <img src={logo} alt="logo" />
               </Col>
 
@@ -77,18 +82,17 @@ export default class EmployeePrincipalPage extends Component {
                     <Form.Label htmlFor="photo-upload" className="custom-file-upload fas">
                         <div className="img-wrap" >
                             <img class="photo-upload" src={imagePreviewUrl}/>
+                            <input id="photo-upload" type="file" onChange={this.photoUpload} />
+
                          </div>
-                         <div class="file btn btn-lg btn-primary">
-                                Change Photo
-                                <input id="photo-upload" type="file" onChange={this.photoUpload} />
-                        </div>
+                         
 
                     </Form.Label>
               </Col>
 
               <Col>
                 <div class="profile-head">
-                  <h5>Kshiti Ghelani</h5>
+                  <h5>{this.state.name}</h5>
                   <h6>Web Developer and Designer</h6>
                   <p class="proile-rating">
                     RANKINGS : <span>8/10</span>
@@ -126,10 +130,16 @@ export default class EmployeePrincipalPage extends Component {
               <Col md={4}>
                 <div class="profile-work">
                   <h4>Your works: </h4>
-                  <p>SKILLS</p>
-                  <p>SKILLS</p>
-                  <p>SKILLS</p>
-                  <p>SKILLS</p>
+                  <Form.Label>
+                      {this.state.works.map((element) => {
+                        return (
+                          <option key={element.work_name} value={element.work_name}>
+                            {element.work_name}
+                          </option>
+                        );
+                      })}
+              
+                  </Form.Label>
                 </div>
               </Col>
               <Col md={4}>

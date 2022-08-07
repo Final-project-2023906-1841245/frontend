@@ -20,8 +20,7 @@ export default class UserPrincipalPage extends Component{
           address: "",
           phone: "",
           file: '',
-          imagePreviewUrl:'https://upload.wikimedia.org/wikipedia/commons/d/d3/Microsoft_Account.svg',
-          
+          imagePreviewUrl:'https://c.neh.tw/thumb/f/720/comvecteezy377227.jpg',          
         };
     };
     
@@ -44,7 +43,7 @@ export default class UserPrincipalPage extends Component{
 
     componentDidMount = () => {  
         var phone_data = localStorage.getItem("phone");
-        axios.post("http://localhost:5000/userprincipalpage", {"phone": phone_data}).then((response) => {
+        axios.post("http://localhost:5000/user/principalpage", {"phone": phone_data}).then((response) => {
             console.log(response.data)
             this.setState({ name: response.data[0].user_name });
             this.setState({ email: response.data[0].email });
@@ -102,11 +101,9 @@ export default class UserPrincipalPage extends Component{
                     <Form.Label htmlFor="photo-upload" className="custom-file-upload fas">
                         <div className="img-wrap" >
                             <img class="photo-upload" src={imagePreviewUrl}/>
+                            <input id="photo-upload" type="file" onChange={this.photoUpload} />
                          </div>
-                         <div class="file btn btn-lg btn-primary">
-                                Change Photo
-                                <input id="photo-upload" type="file" onChange={this.photoUpload} />
-                        </div>
+                         
 
                     </Form.Label>
 
