@@ -9,8 +9,8 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 
-
 export default class UserPrincipalPage extends Component{
+
 
     constructor() {
         super();
@@ -19,17 +19,43 @@ export default class UserPrincipalPage extends Component{
           email: "",
           address: "",
           phone: "",
+          file: '',
+          imagePreviewUrl:'https://upload.wikimedia.org/wikipedia/commons/d/d3/Microsoft_Account.svg',
+          
         };
-      }
+    };
+    
+    photoUpload = e =>{
+        e.preventDefault();
+        const reader = new FileReader();
+        const file = e.target.files[0];
+        reader.onloadend = () => {
+          this.setState({
+            file: file,
+            imagePreviewUrl: reader.result
+          });
+        }
+        reader.readAsDataURL(file);
+     
+    };
+    
+    
+  
 
     componentDidMount = () => {  
         var phone_data = localStorage.getItem("phone");
         axios.post("http://localhost:5000/userprincipalpage", {"phone": phone_data}).then((response) => {
             console.log(response.data)
+            this.setState({ name: response.data[0].user_name });
+            this.setState({ email: response.data[0].email });
+            console.log(this.state.name);
+            console.log(this.state.email);
         });
     };
 
   render(){
+    const {imagePreviewUrl, 
+        } = this.state;
     
     return(
         
@@ -39,8 +65,8 @@ export default class UserPrincipalPage extends Component{
 
 
             <Row>
-                <Col  md={{ span: 2, offset: 1 }}>
-                    <img  src={logo} alt="logo" />
+                <Col  md={{ span: 1, offset: 0 }}>
+                    <img  src={logo} alt="logo" className='logo' />
                 </Col>
 
                 <Col>
@@ -69,19 +95,27 @@ export default class UserPrincipalPage extends Component{
 
             <Row>
                 <Col>
-                    <div class="profile-img">
-                            <img src="../../assets/ja.jpg" alt=""/>
-                            <div class="file btn btn-lg btn-primary">
+                    <Form.Label htmlFor="photo-upload" className="custom-file-upload fas">
+                        <div className="img-wrap" >
+                            <img class="photo-upload" src={imagePreviewUrl}/>
+                         </div>
+                         <div class="file btn btn-lg btn-primary">
                                 Change Photo
-                                <input type="file" name="file"/>
-                            </div>
+                                <input id="photo-upload" type="file" onChange={this.photoUpload} />
                         </div>
+
+                    </Form.Label>
+
+                   
+                      
+                   
+                       
                 </Col>
                     
                 <Col>
                     <div class="profile-head">
                                 <h5>
-                                    Kshiti Ghelani
+                                    {this.state.name}
                                 </h5>
                                 <h6>
                                     Web Developer and Designer
@@ -124,7 +158,7 @@ export default class UserPrincipalPage extends Component{
                             <Form.Label className='data'>Name</Form.Label>
                         </div>
                         <div class="col-md-6">
-                            <Form.Label >lalalala</Form.Label>
+                            <Form.Label >{this.state.name}</Form.Label>
                         </div>
                     </div>
                     <div class="row">
@@ -132,7 +166,7 @@ export default class UserPrincipalPage extends Component{
                             <Form.Label className='data'>Email</Form.Label>
                         </div>
                         <div class="col-md-6">
-                            <Form.Label >jejejeje@hotmail.com</Form.Label>
+                            <Form.Label >{this.state.email}</Form.Label>
                         </div>
                     </div>
                     <div class="row">

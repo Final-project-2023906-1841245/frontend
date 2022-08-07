@@ -10,11 +10,12 @@ export default class UserSignUp extends Component {
   constructor() {
     super();
     this.state = {
-      answer: true,
+      answer: false,
       name: "",
       email: "",
       address: "",
       phone: "",
+      submit: false,
     };
   }
   handleSubmit = (e) => {
@@ -23,6 +24,10 @@ export default class UserSignUp extends Component {
     var email = this.state.email;
     var phone = this.state.phone;
     var address = this.state.address;
+
+    var dataEmployee = this.state.phone;
+    localStorage.setItem("phone", dataEmployee);
+    
     axios
       .post("http://localhost:5000/usersignup", {
         username: name,
@@ -33,6 +38,7 @@ export default class UserSignUp extends Component {
       .then((response) => {
         this.setState({
           answer: response.data,
+          submit: true,
         });
       });
   };
@@ -45,11 +51,16 @@ export default class UserSignUp extends Component {
               <img src={logo} className="logo" alt="logo" />
             </div>
 
-            {!this.state.answer ? (
+            {!this.state.answer  && this.state.submit ? (
               <div class="alert alert-danger" role="alert">
-                El usuario que ingresó ya se encuentra registrado
+                Incorrect username or number entered.
               </div>
+            ) :  this.state.answer ? (
+              this.props.history.push("/userprincipalpage")
             ) : (
+              <div></div>
+            )}
+
               <h1
                 style={{
                   fontSize: 30,
@@ -61,7 +72,7 @@ export default class UserSignUp extends Component {
               >
                 Create Your Account
               </h1>
-            )}
+          
             <Form.Group className="mb-3" controlId="formBasicName">
               <Form.Label>Name</Form.Label>
               <Form.Control
