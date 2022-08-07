@@ -18,7 +18,7 @@ export default class EmployeePrincipalPage extends Component {
   componentDidMount = () => {
     var id_data = localStorage.getItem("id");
     axios
-      .post("http://localhost:5000/employeeprincipalpage", {
+      .post("http://localhost:5000/employee/principalpage", {
         id: id_data,
       })
       .then((response) => {

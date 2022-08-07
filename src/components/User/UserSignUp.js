@@ -24,7 +24,7 @@ export default class UserSignUp extends Component {
     var phone = this.state.phone;
     var address = this.state.address;
     axios
-      .post("http://localhost:5000/usersignup", {
+      .post("http://localhost:5000/user/signup", {
         username: name,
         useraddress: address,
         useremail: email,
