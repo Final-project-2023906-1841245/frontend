@@ -10,31 +10,23 @@ export default class EmployeeSignUp extends Component {
     super(props);
     this.state = {
       logged: false,
-      id: "",
+      id: 0,
       name: "",
       address: "",
       email: "",
-      isChecked: false,
       submit: false,
     };
   }
 
-  toggleChange = () => {
-    this.setState({
-      isChecked: !this.state.isChecked,
-    });
-  };
   handleSubmit = (e) => {
     e.preventDefault();
     var id = this.state.id;
     var name = this.state.name;
-    var isChecked = this.state.isChecked;
     var address = this.state.address;
     var email = this.state.email;
 
-    var dataEmployee = JSON.stringify(this.state);
-
-    localStorage.setItem(this.state.name, dataEmployee);
+    var dataEmployee = this.state.id;
+    localStorage.setItem("id", dataEmployee);
 
     axios
       .post("http://localhost:5000/employeesignup", {

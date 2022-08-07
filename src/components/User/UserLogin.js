@@ -21,8 +21,8 @@ export default class UserLogin extends Component {
     var email = this.state.email;
     var phone = this.state.phone;
 
-    var dataEmployee = this.state.phone;
-    localStorage.setItem("phone", dataEmployee);
+    var dataUser = this.state.phone;
+    localStorage.setItem("phone", dataUser);
 
     axios
       .post("http://localhost:5000/userlogin", {
@@ -46,11 +46,11 @@ export default class UserLogin extends Component {
               <img src={logo} className="logo" alt="logo" />
             </div>
 
-            {!this.state.answer  && this.state.submit ? (
+            {!this.state.answer && this.state.submit ? (
               <div class="alert alert-danger" role="alert">
                 Incorrect username or number entered.
               </div>
-            ) :  this.state.answer ? (
+            ) : this.state.answer ? (
               this.props.history.push("/userprincipalpage")
             ) : (
               <div></div>
@@ -103,20 +103,17 @@ export default class UserLogin extends Component {
                 className="btn btn-primary"
               >
                 Login
-            </Button>
-              
-          </div>
-          
-          <p className="forgot-password text-right">
-           <a href="/usersignup"> Create your Account</a>
-          </p>
-          <p className="forgot-password text-right">
-            <a href="/"> Back to home</a>
-          </p>
-          
-        
-        </Form>
-      </div>
+              </Button>
+            </div>
+
+            <p className="forgot-password text-right">
+              <a href="/usersignup"> Create your Account</a>
+            </p>
+            <p className="forgot-password text-right">
+              <a href="/"> Back to home</a>
+            </p>
+          </Form>
+        </div>
       </div>
     );
   }
