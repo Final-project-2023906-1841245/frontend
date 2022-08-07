@@ -29,7 +29,7 @@ export default class UserSignUp extends Component {
     localStorage.setItem("phone", dataEmployee);
     
     axios
-      .post("http://localhost:5000/usersignup", {
+      .post("http://localhost:5000/user/signup", {
         username: name,
         useraddress: address,
         useremail: email,

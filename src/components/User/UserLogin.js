@@ -25,7 +25,7 @@ export default class UserLogin extends Component {
     localStorage.setItem("phone", dataUser);
 
     axios
-      .post("http://localhost:5000/userlogin", {
+      .post("http://localhost:5000/user/login", {
         useremail: email,
         userphone: phone,
       })

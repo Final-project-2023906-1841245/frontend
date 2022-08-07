@@ -20,7 +20,7 @@ export default class EmployeeLogin extends Component {
     localStorage.setItem("id", dataEmployee);
 
     axios
-      .post("http://localhost:5000/employeelogin", {
+      .post("http://localhost:5000/employee/login", {
         employeeid: dataEmployee,
       })
       .then((response) => {
