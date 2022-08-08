@@ -4,7 +4,7 @@ import "./PrincipalPageStyle.css";
 import axios from "axios";
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
-import logo from "../../assets/logo1.png";
+import logo from "../../assets/logote.png";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
@@ -20,6 +20,7 @@ export default class UserPrincipalPage extends Component{
           address: "",
           phone: "",
           file: '',
+          description:"",
           imagePreviewUrl:'https://c.neh.tw/thumb/f/720/comvecteezy377227.jpg',          
         };
     };
@@ -47,6 +48,8 @@ export default class UserPrincipalPage extends Component{
             console.log(response.data)
             this.setState({ name: response.data[0].user_name });
             this.setState({ email: response.data[0].email });
+            this.setState({description: response.data[0].user_description});
+
             console.log(this.state.name);
             console.log(this.state.email);
         });
@@ -63,12 +66,16 @@ export default class UserPrincipalPage extends Component{
         <div className="auth-inner-ja">
         <Form method="post">
             <Row>
+              
                 <Col  md={{ span: 1, offset: 0 }}>
-                    <img  src={logo} alt="logo" className='logo' />
+                <div className="logo">
+                    <img  src={logo} alt="logo"  />
+                  </div>
                 </Col>
+               
 
-              <Col>
-                <Nav className="justify-content-end" activeKey="/home">
+              <Col  md={{ span: 9, offset: 2}}>
+                <Nav className="justify-content-end" activeKey="/home" fill = 'true'>
                   <Nav.Item>
                     <Form className="d-flex">
                       <Form.Control
@@ -97,29 +104,18 @@ export default class UserPrincipalPage extends Component{
             </Row>
 
             <Row>
-                <Col>
-                    <Form.Label htmlFor="photo-upload" className="custom-file-upload fas">
-                        <div className="img-wrap" >
-                            <img class="photo-upload" src={imagePreviewUrl}/>
-                            <input id="photo-upload" type="file" onChange={this.photoUpload} />
-                         </div>
-                         
+              <Form.Label></Form.Label>
+            </Row>
 
-                    </Form.Label>
-
-                   
-                      
-                   
-                       
-                </Col>
-                    
-                <Col>
+            <Row>
+               
+              <Col  md={{ span: 4, offset: 3 }}>
                     <div class="profile-head">
                                 <h5>
                                     {this.state.name}
                                 </h5>
                                 <h6>
-                                    Web Developer and Designer
+                                    {this.state.description}
                                 </h6>
                                 <p class="proile-rating">RANKINGS : <span>8/10</span></p>
 
@@ -141,21 +137,23 @@ export default class UserPrincipalPage extends Component{
                 </div>
               </Col>
 
-              <Col>
-                <input
-                  type="submit"
-                  class="profile-edit-btn"
-                  name="btnAddMore"
-                  value="Edit Profile"
-                />
+              <Col  md={{ span: 1, offset: 1 }}>
+                    <Form.Label htmlFor="photo-upload" className="custom-file-upload fas">
+                        <div className="img-wrap" >
+                            <img class="photo-upload" src={imagePreviewUrl}/>
+                            <input id="photo-upload" type="file" onChange={this.photoUpload} />
+                         </div>
+                         
+
+                    </Form.Label>
               </Col>
+
+              
             </Row>
 
             <Row>
                 
-
-
-                <Col   md={{ span: 4, offset: 4 }}>
+                <Col   md={{ span: 4, offset: 3 }}>
               
                     <div class="row">
                         <div class="col-md-6">
@@ -190,6 +188,15 @@ export default class UserPrincipalPage extends Component{
                         </div>
                     </div>
                                     
+                 </Col>
+
+                <Col md={{ span: 3, offset: 1 }}>
+                <input
+                  type="submit"
+                  class="profile-edit-btn"
+                  name="btnAddMore"
+                  value="Edit Profile"
+                />
                  </Col>
                 
             </Row>

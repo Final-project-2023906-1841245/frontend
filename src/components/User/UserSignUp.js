@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
-import { BrowserRouter as Router, Link } from "react-router-dom";
 import axios from "axios";
 import logo from "../../assets/logo1.png";
 import { NavLink } from "react-router-dom";
@@ -14,26 +13,31 @@ export default class UserSignUp extends Component {
       name: "",
       email: "",
       address: "",
-      phone: "",
+      phone: 0,
       submit: false,
+      description: "",
     };
   }
   handleSubmit = (e) => {
     e.preventDefault();
+    var phone = this.state.phone;
     var name = this.state.name;
     var email = this.state.email;
-    var phone = this.state.phone;
     var address = this.state.address;
+    var description = this.state.description;
+
 
     var dataEmployee = this.state.phone;
     localStorage.setItem("phone", dataEmployee);
     
     axios
       .post("http://localhost:5000/user/signup", {
+        userphone: phone,
         username: name,
         useraddress: address,
         useremail: email,
-        userphone: phone,
+        userdescription: description,
+
       })
       .then((response) => {
         this.setState({
@@ -95,9 +99,7 @@ export default class UserSignUp extends Component {
                 }}
                 required
               />
-              <Form.Text className="text-muted">
-                We'll never share your Address with anyone else.
-              </Form.Text>
+        
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -110,9 +112,7 @@ export default class UserSignUp extends Component {
                 }}
                 required
               />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
+             
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -125,6 +125,18 @@ export default class UserSignUp extends Component {
                 }}
                 required
               />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Description  </Form.Label>
+              <Form.Control
+                type="description"
+                placeholder="Enter description"
+                onChange={(e) => {
+                  this.setState({ description : e.target.value });
+                }}
+                required
+              />
+              
             </Form.Group>
 
             <div className="d-grid">

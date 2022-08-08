@@ -15,6 +15,7 @@ export default class EmployeeSignUp extends Component {
       address: "",
       email: "",
       submit: false,
+      description: "",
     };
   }
 
@@ -24,6 +25,7 @@ export default class EmployeeSignUp extends Component {
     var name = this.state.name;
     var address = this.state.address;
     var email = this.state.email;
+    var description = this.state.description;
 
     var dataEmployee = this.state.id;
     localStorage.setItem("id", dataEmployee);
@@ -34,6 +36,8 @@ export default class EmployeeSignUp extends Component {
         employeename: name,
         employeeaddress: address,
         employeeemail: email,
+        employeedescription: description,
+
       })
       .then((response) => {
         this.setState({
@@ -65,7 +69,7 @@ export default class EmployeeSignUp extends Component {
 
             <h1
               style={{
-                fontSize: 30,
+                fontSize: 25,
                 fontWeight: 800,
                 color: "#124265",
                 textAlign: "center",
@@ -109,9 +113,6 @@ export default class EmployeeSignUp extends Component {
                 }}
                 required
               />
-              <Form.Text className="text-muted">
-                We'll never share your Address with anyone else.
-              </Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -124,9 +125,20 @@ export default class EmployeeSignUp extends Component {
                 }}
                 required
               />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
+             
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Description  </Form.Label>
+              <Form.Control
+                type="description"
+                placeholder="Enter description"
+                onChange={(e) => {
+                  this.setState({ description : e.target.value });
+                }}
+                required
+              />
+              
             </Form.Group>
 
             <div className="d-grid">
