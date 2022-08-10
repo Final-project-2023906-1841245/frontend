@@ -41,8 +41,6 @@ export default class EmployeeSignUp extends Component {
         employeeaddress: address,
         employeeemail: email,
         employeedescription: description,
-       
-
       })
       .then((response) => {
         this.setState({
@@ -133,20 +131,18 @@ export default class EmployeeSignUp extends Component {
                 }}
                 required
               />
-             
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Description  </Form.Label>
+              <Form.Label>Description </Form.Label>
               <Form.Control
                 type="description"
                 placeholder="Enter description"
                 onChange={(e) => {
-                  this.setState({ description : e.target.value });
+                  this.setState({ description: e.target.value });
                 }}
                 required
               />
-              
             </Form.Group>
 
             <div className="d-grid">
