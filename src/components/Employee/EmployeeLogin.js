@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
-import { BrowserRouter as Router, Link } from "react-router-dom";
 import logo from "../../assets/logo1.png";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
@@ -43,7 +42,7 @@ export default class EmployeeLogin extends Component {
 
             {!this.state.answer && this.state.submit ? (
               <div class="alert alert-danger" role="alert">
-                Incorrect username or number entered.
+                Incorrect id number entered.
               </div>
             ) : this.state.answer ? (
               this.props.history.push("/employeeprincipalpage")

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
-import { BrowserRouter as Router, Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import logo from "../../assets/logo1.png";
+
 
 export default class EmployeeSignUp extends Component {
   constructor(props) {
@@ -16,8 +16,11 @@ export default class EmployeeSignUp extends Component {
       email: "",
       submit: false,
       description: "",
+      
     };
   }
+ 
+  
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -26,6 +29,7 @@ export default class EmployeeSignUp extends Component {
     var address = this.state.address;
     var email = this.state.email;
     var description = this.state.description;
+   
 
     var dataEmployee = this.state.id;
     localStorage.setItem("id", dataEmployee);
@@ -37,6 +41,7 @@ export default class EmployeeSignUp extends Component {
         employeeaddress: address,
         employeeemail: email,
         employeedescription: description,
+       
 
       })
       .then((response) => {
@@ -49,6 +54,8 @@ export default class EmployeeSignUp extends Component {
   };
 
   render() {
+    const {imagePreviewUrl, 
+    } = this.state;
     return (
       <div className="auth-wrapper">
         <div className="auth-inner">
@@ -80,6 +87,7 @@ export default class EmployeeSignUp extends Component {
             </h1>
 
             <Form.Group className="mb-3" controlId="formBasicID">
+          
               <Form.Label>ID Number</Form.Label>
               <Form.Control
                 type="id"

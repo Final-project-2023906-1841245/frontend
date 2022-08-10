@@ -15,29 +15,17 @@ export default class EmployeePrincipalPage extends Component {
     this.state = {
       name: "",
       email: "",
-      works:[],
-      description:"",
-      file: '',
-      imagePreviewUrl:'https://c.neh.tw/thumb/f/720/comvecteezy377227.jpg',
-          
-    };
-  }
+      works: [],
+      description: "",
+      imageName: 'https://c.neh.tw/thumb/f/720/comvecteezy377227.jpg',
 
-  photoUpload = e =>{
-    e.preventDefault();
-    const reader = new FileReader();
-    const file = e.target.files[0];
-    reader.onloadend = () => {
-      this.setState({
-        file: file,
-        imagePreviewUrl: reader.result
-      });
-    }
-    reader.readAsDataURL(file);
- 
-  };
+    };
+  };  
+
+  
   componentDidMount = () => {
     var id_data = localStorage.getItem("id");
+   
     axios
       .post("http://localhost:5000/employee/principalpage", {
         id: id_data,
@@ -49,17 +37,14 @@ export default class EmployeePrincipalPage extends Component {
           description: response.data[0][0].employee_description,
           works: response.data[1]
         });
-        console.log(this.state.works);
-
         
-
-       
       });
 
   };
   render() {
-    const {imagePreviewUrl, 
+    const {imageName, 
     } = this.state;
+  
     return (
       <div className="auth-wrapper-ja">
         <div className="auth-inner-ja">
@@ -82,99 +67,104 @@ export default class EmployeePrincipalPage extends Component {
             </Row>
 
             <Row>
-            
 
-              <Col  md={{ span: 4, offset: 3 }}>
+              <Col md={{ span: 4, offset: 3 }}>
                 <div class="profile-head">
                   <h5>{this.state.name}</h5>
                   <h6>{this.state.description}</h6>
                   <p class="proile-rating">
                     RANKINGS : <span>8/10</span></p>
-                    <Tabs
-                      defaultActiveKey="home"
-                      transition={false}
-                      id="noanim-tab-example"
-                      className="mb-3"
-                    >
-                      <Tab eventKey="home" title="Profile">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <Form.Label className="data">User ID</Form.Label>
-                          </div>
-                          <div class="col-md-6">
-                            <Form.Label>{localStorage.getItem("id")}</Form.Label>
-                          </div>
+                  <Tabs
+                    defaultActiveKey="home"
+                    transition={false}
+                    id="noanim-tab-example"
+                    className="mb-3"
+                  >
+                    <Tab eventKey="home" title="Profile">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <Form.Label className="data">User ID</Form.Label>
                         </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <Form.Label className="data">Name</Form.Label>
-                          </div>
-                          <div class="col-md-6">
-                            <Form.Label>{this.state.name}</Form.Label>
-                          </div>
+                        <div class="col-md-6">
+                          <Form.Label>{localStorage.getItem("id")}</Form.Label>
                         </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <Form.Label className="data">Email</Form.Label>
-                          </div>
-                          <div class="col-md-6">
-                            <Form.Label>{this.state.email}</Form.Label>
-                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <Form.Label className="data">Name</Form.Label>
                         </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <Form.Label className="data">Address</Form.Label>
-                          </div>
-                          <div class="col-md-6">
-                            <Form.Label> calle 5e</Form.Label>
-                          </div>
+                        <div class="col-md-6">
+                          <Form.Label>{this.state.name}</Form.Label>
                         </div>
-                        
-                      </Tab>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <Form.Label className="data">Email</Form.Label>
+                        </div>
+                        <div class="col-md-6">
+                          <Form.Label>{this.state.email}</Form.Label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <Form.Label className="data">Address</Form.Label>
+                        </div>
+                        <div class="col-md-6">
+                          <Form.Label> calle 5e</Form.Label>
+                        </div>
+                      </div>
 
-                      <Tab eventKey="profile" title="Works">
-                        <div class="profile-work">
+                    </Tab>
 
-                          <Form.Label className="works">
-                            {this.state.works.map((element) => {
-                              return (
-                                <option key={element.work_name} value={element.work_name}>
-                                  {element.work_name}
-                                </option>
-                              );
-                            })}
+                    <Tab eventKey="profile" title="Works">
+                      <div class="profile-work">
 
-                          </Form.Label>
-                        </div>
-                        
-                      </Tab>
-                      
-                    </Tabs>
+                        <Form.Label className="works">
+                          {this.state.works.map((element) => {
+                            return (
+                              <option key={element.work_name} value={element.work_name}>
+                                {element.work_name}
+                              </option>
+                            );
+                          })}
+
+                        </Form.Label>
+                      </div>
+
+                    </Tab>
+
+                  </Tabs>
 
                 </div>
               </Col>
-              <Col  md={{ span: 4, offset: 1 }}>
-                    <Form.Label htmlFor="photo-upload" className="custom-file-upload fas">
-                      <div className="img-wrap" >
-                        <img class="photo-upload" src={imagePreviewUrl} />
-                        <input id="photo-upload" type="file" onChange={this.photoUpload} />
+              <Col md={{ span: 1, offset: 1 }}>
 
-                      </div>
-                    </Form.Label>
-                    <div>
-                    <input
-                      type="submit"
-                      class="profile-edit-btn"
-                      name="btnAddMore"
-                      value="Edit Profile"
-                    />
+                <form method="POST"
+                  action="http://localhost:5000/employee/principalpage/upload"
+                  enctype="multipart/form-data"
+                  className="custom-file-upload fas">
+
+                  <div class="profile-img">
+                    <img src={imageName} alt="" />
+                    <div class="file btn btn-lg btn-primary">
+                      Upload your photo
+                      <input type="file" name="profile-file" id="photo-upload" required />
                     </div>
+                  </div>
+
+                  <div class="col-3">
+                    <input type="submit" value="Upload" className="btn btn-outline-primary" />
+
+                  </div>
+
+                </form>
+
               </Col>
 
-             
+
             </Row>
 
-            
+
           </Form>
         </div>
       </div>

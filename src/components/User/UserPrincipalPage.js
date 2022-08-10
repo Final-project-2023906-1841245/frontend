@@ -25,23 +25,6 @@ export default class UserPrincipalPage extends Component{
         };
     };
     
-    photoUpload = e =>{
-        e.preventDefault();
-        const reader = new FileReader();
-        const file = e.target.files[0];
-        reader.onloadend = () => {
-          this.setState({
-            file: file,
-            imagePreviewUrl: reader.result
-          });
-        }
-        reader.readAsDataURL(file);
-     
-    };
-    
-    
-  
-
     componentDidMount = () => {  
         var phone_data = localStorage.getItem("phone");
         axios.post("http://localhost:5000/user/principalpage", {"phone": phone_data}).then((response) => {
@@ -103,9 +86,7 @@ export default class UserPrincipalPage extends Component{
               </Col>
             </Row>
 
-            <Row>
-              <Form.Label></Form.Label>
-            </Row>
+            
 
             <Row>
                
@@ -138,14 +119,26 @@ export default class UserPrincipalPage extends Component{
               </Col>
 
               <Col  md={{ span: 1, offset: 1 }}>
-                    <Form.Label htmlFor="photo-upload" className="custom-file-upload fas">
-                        <div className="img-wrap" >
-                            <img class="photo-upload" src={imagePreviewUrl}/>
-                            <input id="photo-upload" type="file" onChange={this.photoUpload} />
-                         </div>
-                         
 
-                    </Form.Label>
+              <form method="POST" 
+                    action="http://localhost:5000/employee/principalpage/upload" 
+                    enctype="multipart/form-data"  
+                    className="custom-file-upload fas">
+
+                  <div class="profile-img">
+                    <img src={imagePreviewUrl} alt="" />
+                    <div class="file btn btn-lg btn-primary">
+                      Upload your photo
+                      <input type="file" name="profile-file" id="photo-upload" required />
+                    </div>
+                  </div>
+                  
+                  <div class="col-3">
+                    <input type="submit" value="Upload" className="btn btn-outline-primary" /> 
+                    
+                  </div>
+                  
+                </form>
               </Col>
 
               
@@ -190,14 +183,7 @@ export default class UserPrincipalPage extends Component{
                                     
                  </Col>
 
-                <Col md={{ span: 3, offset: 1 }}>
-                <input
-                  type="submit"
-                  class="profile-edit-btn"
-                  name="btnAddMore"
-                  value="Edit Profile"
-                />
-                 </Col>
+             
                 
             </Row>
           </Form>
