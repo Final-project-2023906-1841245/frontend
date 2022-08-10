@@ -16,25 +16,11 @@ export default class UserPrincipalPage extends Component {
       email: "",
       address: "",
       phone: "",
-      file: "",
       description: "",
       imagePreviewUrl: "https://c.neh.tw/thumb/f/720/comvecteezy377227.jpg",
       availableWorks: [],
       search: "",
     };
-  }
-
-  photoUpload = (e) => {
-    e.preventDefault();
-    const reader = new FileReader();
-    const file = e.target.files[0];
-    reader.onloadend = () => {
-      this.setState({
-        file: file,
-        imagePreviewUrl: reader.result,
-      });
-    };
-    reader.readAsDataURL(file);
   };
 
   componentDidMount = () => {
@@ -149,8 +135,8 @@ export default class UserPrincipalPage extends Component {
 
               <Col  md={{ span: 1, offset: 1 }}>
 
-              <form method="POST" 
-                    action="http://localhost:5000/employee/principalpage/upload" 
+                <form method="POST" 
+                    action="http://localhost:5000/user/principalpage/upload" 
                     enctype="multipart/form-data"  
                     className="custom-file-upload fas">
 
@@ -168,6 +154,7 @@ export default class UserPrincipalPage extends Component {
                   </div>
                   
                 </form>
+                
               </Col>
             </Row>
 
