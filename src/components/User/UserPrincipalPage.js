@@ -43,7 +43,7 @@ export default class UserPrincipalPage extends Component {
   handleClick = async (e) => {
     var coincidence = false;
     for (let i = 0; i < this.state.availableWorks.length; i++) {
-      if (this.state.search == this.state.availableWorks[i].work_name) {
+      if (this.state.search === this.state.availableWorks[i].work_name) {
         coincidence = true;
         localStorage.setItem("work", this.state.search);
         this.props.history.push("/jobslist");
@@ -95,7 +95,7 @@ export default class UserPrincipalPage extends Component {
                     </Form>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="">Activity</Nav.Link>
+                    <Nav.Link href="/">Booking</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link href="/">Log Out</Nav.Link>
@@ -154,7 +154,7 @@ export default class UserPrincipalPage extends Component {
                   </div>
                   
                 </form>
-                
+
               </Col>
             </Row>
 

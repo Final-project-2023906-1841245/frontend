@@ -9,6 +9,7 @@ import EmployeeWorks from "./components/Employee/EmployeeWorks.js";
 import UserPrincipalPage from "./components/User/UserPrincipalPage.js";
 import EmployeePrincipalPage from "./components/Employee/EmployeePrincipalPage.js";
 import Jobslist from "./components/User/Jobslist.js";
+import Hire from "./components/User/Hire.js";
 
 export default () => (
   <Switch>
@@ -21,5 +22,6 @@ export default () => (
     <Route path="/employeeworks" component={EmployeeWorks} />
     <Route path="/employeeprincipalpage" component={EmployeePrincipalPage} />
     <Route path="/jobslist" component={Jobslist} />
+    <Route path="/hire" component={Hire} />
   </Switch>
 );

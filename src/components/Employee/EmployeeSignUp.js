@@ -52,8 +52,7 @@ export default class EmployeeSignUp extends Component {
   };
 
   render() {
-    const {imagePreviewUrl, 
-    } = this.state;
+  
     return (
       <div className="auth-wrapper">
         <div className="auth-inner">

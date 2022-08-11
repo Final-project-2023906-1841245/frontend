@@ -9,6 +9,7 @@ export default class Jobslist extends React.Component {
   state = {
     data: [],
   };
+
   componentDidMount = () => {
     var phone = localStorage.getItem("phone");
     var work = localStorage.getItem("work");
@@ -54,7 +55,7 @@ export default class Jobslist extends React.Component {
                   <td>{dato.price}</td>
                   <td>{Math.round(dato.distance / 1000)}</td>
                   <td>
-                    <Button color="primary">Contratar</Button>{" "}
+                    <Button color="primary" href="/hire">Hire</Button>{" "}
                   </td>
                 </tr>
               ))}

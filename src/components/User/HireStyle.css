@@ -1,0 +1,16 @@
+.auth-wrapper1 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+  }
+  .auth-inner1 {
+    width: 450px;
+   
+    background: #ffffff;
+
+    padding: 0px 30px 35px 30px;
+    border-radius: 15px;
+    margin-top: 0;
+   
+  }
