@@ -21,7 +21,7 @@ export default class UserPrincipalPage extends Component {
       availableWorks: [],
       search: "",
     };
-  };
+  }
 
   componentDidMount = () => {
     var phone_data = localStorage.getItem("phone");
@@ -32,6 +32,7 @@ export default class UserPrincipalPage extends Component {
         this.setState({ name: response.data[0].user_name });
         this.setState({ email: response.data[0].email });
         this.setState({ description: response.data[0].user_description });
+        this.setState({ imagePreviewUrl: response.data[0].img });
       });
     axios
       .get("http://localhost:5000/user/principalpage/jobslist")
@@ -52,6 +53,21 @@ export default class UserPrincipalPage extends Component {
     if (!coincidence) {
       alert("Please enter a valid work name");
     }
+  };
+  uploadHandler = (e) => {
+    const data = new FormData();
+    data.append("file", e.target.files[0]);
+    axios
+      .post("http://localhost:5000/user/principalpage/upload", data)
+      .then((res) => {
+        this.setState({
+          imagePreviewUrl: `http://localhost:5000/${res.data.filename}`,
+        });
+        axios.post("http://localhost:5000/user/principalpage/inserturl", [
+          localStorage.getItem("phone"),
+          this.state.imagePreviewUrl,
+        ]);
+      });
   };
 
   render() {
@@ -104,8 +120,6 @@ export default class UserPrincipalPage extends Component {
               </Col>
             </Row>
 
-            
-
             <Row>
               <Col md={{ span: 4, offset: 3 }}>
                 <div class="profile-head">
@@ -133,28 +147,14 @@ export default class UserPrincipalPage extends Component {
                 </div>
               </Col>
 
-              <Col  md={{ span: 1, offset: 1 }}>
-
-                <form method="POST" 
-                    action="http://localhost:5000/user/principalpage/upload" 
-                    enctype="multipart/form-data"  
-                    className="custom-file-upload fas">
-
-                  <div class="profile-img">
-                    <img src={imagePreviewUrl} alt="" />
-                    <div class="file btn btn-lg btn-primary">
-                      Upload your photo
-                      <input type="file" name="profile-file" id="photo-upload" required />
-                    </div>
+              <Col md={{ span: 1, offset: 1 }}>
+                <div class="profile-img">
+                  <img src={imagePreviewUrl} alt="" />
+                  <div class="file btn btn-lg btn-primary">
+                    Upload your photo
+                    <input type="file" onChange={this.uploadHandler} />
                   </div>
-                  
-                  <div class="col-3">
-                    <input type="submit" value="Upload" className="btn btn-outline-primary" /> 
-                    
-                  </div>
-                  
-                </form>
-                
+                </div>
               </Col>
             </Row>
 
@@ -193,9 +193,6 @@ export default class UserPrincipalPage extends Component {
                   </div>
                 </div>
               </Col>
-
-             
-                
             </Row>
           </Form>
         </div>
