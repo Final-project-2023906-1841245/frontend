@@ -14,7 +14,7 @@ export default class UserPrincipalPage extends Component {
     this.state = {
       name: "",
       email: "",
-      address: "",
+      address: localStorage.getItem("address"),
       phone: "",
       description: "",
       imagePreviewUrl: "https://c.neh.tw/thumb/f/720/comvecteezy377227.jpg",

@@ -4,6 +4,7 @@ import axios from "axios";
 
 import { Table, Button, Container } from "react-bootstrap";
 
+
 export default class Jobslist extends React.Component {
   state = {
     data: [],
@@ -54,8 +55,10 @@ export default class Jobslist extends React.Component {
                   <td>{dato.price}</td>
                   <td>{Math.round(dato.distance / 1000)}</td>
                   <td>
-                    <Button color="primary" href="/hire">Hire</Button>{" "}
+                    <Button color="primary" href="/hire" id={dato.employee_name}> Hire </Button>{" "}
                   </td>
+                  
+                  
                 </tr>
               ))}
             </tbody>

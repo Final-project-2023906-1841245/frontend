@@ -26,6 +26,8 @@ export default class UserSignUp extends Component {
     var address = this.state.address;
     var description = this.state.description;
 
+  
+
 
     var dataEmployee = this.state.phone;
     localStorage.setItem("phone", dataEmployee);
