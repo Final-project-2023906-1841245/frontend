@@ -4,7 +4,6 @@ import axios from "axios";
 
 import { Table, Button, Container } from "react-bootstrap";
 
-
 export default class Jobslist extends React.Component {
   state = {
     data: [],
