@@ -27,6 +27,11 @@ export default class Jobslist extends React.Component {
       });
   };
 
+  handleClick =(e)=>{
+    localStorage.setItem("employeeid",e.target.id);
+    this.props.history.push("/hire")
+  }
+
   render() {
     return (
       <>
@@ -55,7 +60,7 @@ export default class Jobslist extends React.Component {
                   <td>{dato.price}</td>
                   <td>{Math.round(dato.distance / 1000)}</td>
                   <td>
-                    <Button color="primary" href="/hire" id={dato.employee_name}> Hire </Button>{" "}
+                    <Button color="primary" id={dato.employee_id} onClick={this.handleClick}> Hire </Button>{" "}
                   </td>
                   
                   

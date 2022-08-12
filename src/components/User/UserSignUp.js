@@ -39,9 +39,10 @@ export default class UserSignUp extends Component {
         useraddress: address,
         useremail: email,
         userdescription: description,
-
+                                 
       })
       .then((response) => {
+        console.log("EL VALOR BOOLEANO ES:", response.data)
         this.setState({
           answer: response.data,
           submit: true,
@@ -129,7 +130,7 @@ export default class UserSignUp extends Component {
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Description  </Form.Label>
+              <Form.Label>About myself  </Form.Label>
               <Form.Control
                 type="description"
                 placeholder="Enter description"

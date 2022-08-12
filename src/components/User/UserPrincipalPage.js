@@ -18,7 +18,7 @@ export default class UserPrincipalPage extends Component {
       phone: "",
       description: "",
       imagePreviewUrl: "https://c.neh.tw/thumb/f/720/comvecteezy377227.jpg",
-      availableWorks: [],
+      availableWorks: null,
       search: "",
     };
   }
@@ -43,10 +43,12 @@ export default class UserPrincipalPage extends Component {
 
   handleClick = async (e) => {
     var coincidence = false;
+    console.log(this.state.availableWorks)
     for (let i = 0; i < this.state.availableWorks.length; i++) {
       if (this.state.search === this.state.availableWorks[i].work_name) {
         coincidence = true;
         localStorage.setItem("work", this.state.search);
+        localStorage.setItem("work_id", this.state.availableWorks[i].id_work);
         this.props.history.push("/jobslist");
       }
     }
