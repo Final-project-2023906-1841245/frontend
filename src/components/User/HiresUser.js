@@ -65,6 +65,7 @@ export default class HiresUser extends React.Component {
                 <tr>
                   <th>Date</th>
                   <th>Work</th>
+                  <th>Worker</th>
                   <th>payment Method</th>
                   
                 </tr>
@@ -74,7 +75,8 @@ export default class HiresUser extends React.Component {
                 {this.state.data.map((dato) => (
                   <tr>
                     <td>{dato.hire_date}</td>
-                    <td>{dato.id_work}</td>
+                    <td>{dato.work_name}</td>
+                    <td>{dato.id_employee}</td>
                     <td>{dato.hire_paymethod}</td>
                    
                     

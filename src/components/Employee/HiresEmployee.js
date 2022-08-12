@@ -37,7 +37,7 @@ export default class HiresEmployee extends React.Component {
         <div className="auth-inner-ja">
           
           <Form.Group>
-          <Button color="success" href="/userprincipalpage">
+          <Button color="success" href="/employeeprincipalpage">
             Back to home
           </Button>
         
@@ -74,7 +74,7 @@ export default class HiresEmployee extends React.Component {
                 {this.state.data.map((dato) => (
                   <tr>
                     <td>{dato.hire_date}</td>
-                    <td>{dato.id_work}</td>
+                    <td>{dato.work_name}</td>
                     <td>{dato.hire_description}</td>
                     <td>{dato.hire_paymethod}</td>
                     
