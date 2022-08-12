@@ -16,16 +16,17 @@ export default class EmployeePrincipalPage extends Component {
       name: "",
       email: "",
       works: [],
+      address: localStorage.getItem("employeeaddress"),
       description: "",
-      imageName: 'https://c.neh.tw/thumb/f/720/comvecteezy377227.jpg',
+      imagePreviewUrl: 'https://c.neh.tw/thumb/f/720/comvecteezy377227.jpg',
 
     };
-  };  
+  };
 
-  
+
   componentDidMount = () => {
     var id_data = localStorage.getItem("id");
-   
+
     axios
       .post("http://localhost:5000/employee/principalpage", {
         id: id_data,
@@ -35,16 +36,34 @@ export default class EmployeePrincipalPage extends Component {
           name: response.data[0][0].employee_name,
           email: response.data[0][0].email,
           description: response.data[0][0].employee_description,
+          imagePreviewUrl: response.data[0][0].img,
           works: response.data[1]
         });
-        
+
       });
 
   };
+
+  uploadHandler = (e) => {
+    const data = new FormData();
+    data.append("file", e.target.files[0]);
+    axios
+      .post("http://localhost:5000/employee/principalpage/upload", data)
+      .then((res) => {
+        this.setState({
+          imagePreviewUrl: `http://localhost:5000/${res.data.filename}`,
+        });
+        axios.post("http://localhost:5000/employee/principalpage/inserturl", [
+          localStorage.getItem("id"),
+          this.state.imagePreviewUrl,
+        ]);
+      });
+  };
+
   render() {
-    const {imageName, 
+    const { imagePreviewUrl,
     } = this.state;
-  
+
     return (
       <div className="auth-wrapper-ja">
         <div className="auth-inner-ja">
@@ -57,7 +76,7 @@ export default class EmployeePrincipalPage extends Component {
               <Col>
                 <Nav className="justify-content-end" activeKey="/home">
                   <Nav.Item>
-                    <Nav.Link eventKey="">Activity</Nav.Link>
+                    <Nav.Link href="/hireemployee">Activity</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link href="/">Log Out</Nav.Link>
@@ -110,7 +129,7 @@ export default class EmployeePrincipalPage extends Component {
                           <Form.Label className="data">Address</Form.Label>
                         </div>
                         <div class="col-md-6">
-                          <Form.Label> calle 5e</Form.Label>
+                          <Form.Label> {this.state.address}</Form.Label>
                         </div>
                       </div>
 
@@ -138,26 +157,13 @@ export default class EmployeePrincipalPage extends Component {
                 </div>
               </Col>
               <Col md={{ span: 1, offset: 1 }}>
-
-                <form method="POST"
-                  action="http://localhost:5000/employee/principalpage/upload"
-                  enctype="multipart/form-data"
-                  className="custom-file-upload fas">
-
-                  <div class="profile-img">
-                    <img src={imageName} alt="" />
-                    <div class="file btn btn-lg btn-primary">
-                      Upload your photo
-                      <input type="file" name="profile-file" id="photo-upload" required />
-                    </div>
+                <div class="profile-img">
+                  <img src={imagePreviewUrl} alt="" />
+                  <div class="file btn btn-lg btn-primary">
+                    Upload your photo
+                    <input type="file" onChange={this.uploadHandler} />
                   </div>
-
-                  <div class="col-3">
-                    <input type="submit" value="Upload" className="btn btn-outline-primary" />
-
-                  </div>
-
-                </form>
+                </div>
 
               </Col>
 

@@ -12,25 +12,31 @@ export default class Hire extends Component {
             answer: false,
             date: null,
             servicename: localStorage.getItem("work"),
+            serviceid: localStorage.getItem("work_id"),
+            employeeid: localStorage.getItem("employeeid"),
+            userid:localStorage.getItem("phone"),
             description: "",
             paymentmethod: "",
 
         };
     };
+   
 
     handleSubmit = (e) => {
         e.preventDefault();
         var date = this.state.date;
         var description = this.state.description;
         var paymentmethod = this.state.paymentmethod;
-
-        var idemployee = localStorage.getItem("id");
-        var iduser = localStorage.getItem("phone");
+        var employeeid = this.state.employeeid;
+        var userid = this.state.userid;
+        var serviceid = this.state.serviceid;
+       
 
         axios
             .post("http://localhost:5000/user/hire", {
-                employeeid: idemployee,
-                userid: iduser,
+                employeeid: employeeid,
+                serviceid: serviceid,
+                userid: userid,
                 hiredate: date,
                 servicedescription: description,
                 paymentmethod: paymentmethod,
@@ -42,6 +48,7 @@ export default class Hire extends Component {
                 });
                 console.log(response.data);
             });
+            this.props.history.push("/userprincipalpage")
     };
     render() {
         return (

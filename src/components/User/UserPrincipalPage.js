@@ -7,6 +7,8 @@ import Button from "react-bootstrap/Button";
 import logo from "../../assets/logote.png";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 
 export default class UserPrincipalPage extends Component {
   constructor() {
@@ -14,7 +16,7 @@ export default class UserPrincipalPage extends Component {
     this.state = {
       name: "",
       email: "",
-      address: localStorage.getItem("address"),
+      address: localStorage.getItem("useraddress"),
       phone: "",
       description: "",
       imagePreviewUrl: "https://c.neh.tw/thumb/f/720/comvecteezy377227.jpg",
@@ -28,7 +30,7 @@ export default class UserPrincipalPage extends Component {
     axios
       .post("http://localhost:5000/user/principalpage", { phone: phone_data })
       .then((response) => {
-        console.log(response.data);
+        
         this.setState({ name: response.data[0].user_name });
         this.setState({ email: response.data[0].email });
         this.setState({ description: response.data[0].user_description });
@@ -43,7 +45,7 @@ export default class UserPrincipalPage extends Component {
 
   handleClick = async (e) => {
     var coincidence = false;
-    console.log(this.state.availableWorks)
+  
     for (let i = 0; i < this.state.availableWorks.length; i++) {
       if (this.state.search === this.state.availableWorks[i].work_name) {
         coincidence = true;
@@ -113,7 +115,7 @@ export default class UserPrincipalPage extends Component {
                     </Form>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link href="/">Booking</Nav.Link>
+                    <Nav.Link href="/hireuser">Hires</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link href="/">Log Out</Nav.Link>
@@ -130,22 +132,49 @@ export default class UserPrincipalPage extends Component {
                   <p class="proile-rating">
                     RANKINGS : <span>8/10</span>
                   </p>
+                  <Tabs
+                    defaultActiveKey="home"
+                    transition={false}
+                    id="noanim-tab-example"
+                    className="mb-3"
+                  >
+                    <Tab eventKey="home" title="Profile">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <Form.Label className="data">User ID</Form.Label>
+                        </div>
+                        <div class="col-md-6">
+                          <Form.Label>{localStorage.getItem("phone")}</Form.Label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <Form.Label className="data">Name</Form.Label>
+                        </div>
+                        <div class="col-md-6">
+                          <Form.Label>{this.state.name}</Form.Label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <Form.Label className="data">Email</Form.Label>
+                        </div>
+                        <div class="col-md-6">
+                          <Form.Label>{this.state.email}</Form.Label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <Form.Label className="data">Address</Form.Label>
+                        </div>
+                        <div class="col-md-6">
+                          <Form.Label> {this.state.address}</Form.Label>
+                        </div>
+                      </div>
 
-                  <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
-                      <a
-                        class="nav-link active"
-                        id="home-tab"
-                        data-toggle="tab"
-                        href="#home"
-                        role="tab"
-                        aria-controls="home"
-                        aria-selected="true"
-                      >
-                        About
-                      </a>
-                    </li>
-                  </ul>
+                    </Tab>
+
+                  </Tabs>       
                 </div>
               </Col>
 
@@ -155,43 +184,6 @@ export default class UserPrincipalPage extends Component {
                   <div class="file btn btn-lg btn-primary">
                     Upload your photo
                     <input type="file" onChange={this.uploadHandler} />
-                  </div>
-                </div>
-              </Col>
-            </Row>
-
-            <Row>
-              <Col md={{ span: 4, offset: 3 }}>
-                <div class="row">
-                  <div class="col-md-6">
-                    <Form.Label className="data">User ID</Form.Label>
-                  </div>
-                  <div class="col-md-6">
-                    <Form.Label>{localStorage.getItem("phone")}</Form.Label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <Form.Label className="data">Name</Form.Label>
-                  </div>
-                  <div class="col-md-6">
-                    <Form.Label>{this.state.name}</Form.Label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <Form.Label className="data">Email</Form.Label>
-                  </div>
-                  <div class="col-md-6">
-                    <Form.Label>{this.state.email}</Form.Label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <Form.Label className="data">Address</Form.Label>
-                  </div>
-                  <div class="col-md-6">
-                    <Form.Label> calle 5e</Form.Label>
                   </div>
                 </div>
               </Col>

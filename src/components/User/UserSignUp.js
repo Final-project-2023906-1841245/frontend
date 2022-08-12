@@ -26,11 +26,11 @@ export default class UserSignUp extends Component {
     var address = this.state.address;
     var description = this.state.description;
 
-  
-
-
-    var dataEmployee = this.state.phone;
-    localStorage.setItem("phone", dataEmployee);
+    var useraddress = this.state.address;
+    localStorage.setItem("useraddress", useraddress);
+    
+    var dataUser = this.state.phone;
+    localStorage.setItem("phone", dataUser);
     
     axios
       .post("http://localhost:5000/user/signup", {

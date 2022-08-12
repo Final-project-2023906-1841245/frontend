@@ -16,11 +16,9 @@ export default class EmployeeSignUp extends Component {
       email: "",
       submit: false,
       description: "",
-      
+
     };
-  }
- 
-  
+  };
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -29,7 +27,9 @@ export default class EmployeeSignUp extends Component {
     var address = this.state.address;
     var email = this.state.email;
     var description = this.state.description;
-   
+
+    var addressEmployee = this.state.address;
+    localStorage.setItem("employeeaddress", addressEmployee);
 
     var dataEmployee = this.state.id;
     localStorage.setItem("id", dataEmployee);
@@ -52,7 +52,7 @@ export default class EmployeeSignUp extends Component {
   };
 
   render() {
-  
+
     return (
       <div className="auth-wrapper">
         <div className="auth-inner">
@@ -84,7 +84,7 @@ export default class EmployeeSignUp extends Component {
             </h1>
 
             <Form.Group className="mb-3" controlId="formBasicID">
-          
+
               <Form.Label>ID Number</Form.Label>
               <Form.Control
                 type="id"
@@ -165,4 +165,4 @@ export default class EmployeeSignUp extends Component {
       </div>
     );
   }
-}
+};
